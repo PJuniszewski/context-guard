@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Claude Code local files
+.claude/
+*.local.json
+
+# Trimmer output
+trimmed-*.json
+trimmed-*.min.json
+trimmed-*.meta.json
+
+# Debug logs
+/tmp/trimmer_debug.log
+
+# Test artifacts
+.pytest_cache/
+.coverage
+htmlcov/

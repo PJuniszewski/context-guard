@@ -1,0 +1,12 @@
+{
+  "name": "trimmer",
+  "version": "1.0.0",
+  "description": "Token guard hook that blocks oversized prompts and offers trimmed JSON payloads",
+  "author": "Patryk Juniszewski",
+  "license": "MIT",
+  "homepage": "https://github.com/patrykjuniszewski/claude-trimmer",
+  "keywords": ["claude", "tokens", "trimming", "hook", "guard"],
+  "engines": {
+    "claude-code": ">=1.0.0"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "hooks": [
+    {
+      "event": "UserPromptSubmit",
+      "command": "python3 ${CLAUDE_PLUGIN_ROOT}/scripts/trimmer_hook.py",
+      "timeout": 20000
+    }
+  ]
+}
