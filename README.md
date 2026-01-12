@@ -27,8 +27,6 @@ export ANTHROPIC_API_KEY="sk-ant-..."
 export TOKEN_GUARD_MODEL="claude-sonnet-4-20250514"
 ```
 
-Add to your shell profile (`~/.bashrc`, `~/.zshrc`) for persistence.
-
 ## Configuration
 
 | Variable | Default | Description |
