@@ -1,0 +1,1504 @@
+[
+  {
+    "id": 1,
+    "title": "Pro Speaker 385",
+    "price": 1951.62,
+    "category": "electronics",
+    "stock": 132,
+    "ratings": {
+      "average": 4.0,
+      "count": 493
+    },
+    "tags": [
+      "sale",
+      "limited"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Deluxe Pants 767",
+    "price": 924.56,
+    "category": "clothing",
+    "stock": 111,
+    "ratings": {
+      "average": 3.5,
+      "count": 392
+    },
+    "tags": [
+      "bestseller",
+      "featured",
+      "new"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Deluxe Rug 603",
+    "price": 563.89,
+    "category": "home",
+    "stock": 13,
+    "ratings": {
+      "average": 4.0,
+      "count": 488
+    },
+    "tags": [
+      "bestseller",
+      "sale"
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Pro Ball 650",
+    "price": 586.39,
+    "category": "sports",
+    "stock": 164,
+    "ratings": {
+      "average": 3.6,
+      "count": 50
+    },
+    "tags": [
+      "featured",
+      "popular"
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Modern Textbook 647",
+    "price": 415.13,
+    "category": "books",
+    "stock": 154,
+    "ratings": {
+      "average": 4.1,
+      "count": 89
+    },
+    "tags": [
+      "limited",
+      "bestseller",
+      "popular"
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Premium Tablet 380",
+    "price": 476.4,
+    "category": "electronics",
+    "stock": 16,
+    "ratings": {
+      "average": 3.9,
+      "count": 350
+    },
+    "tags": [
+      "sale"
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Ultra Dress 520",
+    "price": 57.89,
+    "category": "clothing",
+    "stock": 182,
+    "ratings": {
+      "average": 2.8,
+      "count": 8
+    },
+    "tags": [
+      "bestseller"
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Pro Chair 439",
+    "price": 2016.93,
+    "category": "home",
+    "stock": 102,
+    "ratings": {
+      "average": 3.4,
+      "count": 479
+    },
+    "tags": [
+      "new"
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Premium Gloves 912",
+    "price": 1320.45,
+    "category": "sports",
+    "stock": 77,
+    "ratings": {
+      "average": 3.3,
+      "count": 249
+    },
+    "tags": [
+      "sale",
+      "limited",
+      "featured"
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Classic Guide 201",
+    "price": 1800.23,
+    "category": "books",
+    "stock": 183,
+    "ratings": {
+      "average": 3.4,
+      "count": 130
+    },
+    "tags": [
+      "bestseller"
+    ]
+  },
+  {
+    "id": 11,
+    "title": "Modern Speaker 479",
+    "price": 1587.2,
+    "category": "electronics",
+    "stock": 134,
+    "ratings": {
+      "average": 4.4,
+      "count": 70
+    },
+    "tags": [
+      "sale"
+    ]
+  },
+  {
+    "id": 12,
+    "title": "Basic Shoes 746",
+    "price": 2477.52,
+    "category": "clothing",
+    "stock": 125,
+    "ratings": {
+      "average": 3.9,
+      "count": 72
+    },
+    "tags": [
+      "limited",
+      "bestseller"
+    ]
+  },
+  {
+    "id": 13,
+    "title": "Deluxe Mirror 774",
+    "price": 1609.58,
+    "category": "home",
+    "stock": 131,
+    "ratings": {
+      "average": 2.8,
+      "count": 329
+    },
+    "tags": [
+      "sale",
+      "limited"
+    ]
+  },
+  {
+    "id": 14,
+    "title": "Premium Mat 550",
+    "price": 1604.07,
+    "category": "sports",
+    "stock": 28,
+    "ratings": {
+      "average": 5.0,
+      "count": 445
+    },
+    "tags": [
+      "featured",
+      "sale"
+    ]
+  },
+  {
+    "id": 15,
+    "title": "Classic Cookbook 960",
+    "price": 1250.26,
+    "category": "books",
+    "stock": 130,
+    "ratings": {
+      "average": 3.3,
+      "count": 71
+    },
+    "tags": [
+      "featured"
+    ]
+  },
+  {
+    "id": 16,
+    "title": "Premium Laptop 539",
+    "price": 1018.4,
+    "category": "electronics",
+    "stock": 153,
+    "ratings": {
+      "average": 4.2,
+      "count": 117
+    },
+    "tags": [
+      "bestseller",
+      "limited",
+      "featured"
+    ]
+  },
+  {
+    "id": 17,
+    "title": "Basic Pants 513",
+    "price": 738.99,
+    "category": "clothing",
+    "stock": 74,
+    "ratings": {
+      "average": 3.2,
+      "count": 333
+    },
+    "tags": [
+      "bestseller",
+      "new"
+    ]
+  },
+  {
+    "id": 18,
+    "title": "Premium Mirror 715",
+    "price": 721.67,
+    "category": "home",
+    "stock": 150,
+    "ratings": {
+      "average": 3.9,
+      "count": 499
+    },
+    "tags": [
+      "new",
+      "limited",
+      "bestseller"
+    ]
+  },
+  {
+    "id": 19,
+    "title": "Modern Gloves 332",
+    "price": 2142.15,
+    "category": "sports",
+    "stock": 174,
+    "ratings": {
+      "average": 4.1,
+      "count": 477
+    },
+    "tags": [
+      "new",
+      "bestseller"
+    ]
+  },
+  {
+    "id": 20,
+    "title": "Pro Textbook 614",
+    "price": 552.09,
+    "category": "books",
+    "stock": 94,
+    "ratings": {
+      "average": 3.3,
+      "count": 162
+    },
+    "tags": [
+      "sale"
+    ]
+  },
+  {
+    "id": 21,
+    "title": "Pro Phone 440",
+    "price": 1764.09,
+    "category": "electronics",
+    "stock": 182,
+    "ratings": {
+      "average": 2.7,
+      "count": 418
+    },
+    "tags": [
+      "sale"
+    ]
+  },
+  {
+    "id": 22,
+    "title": "Premium Pants 289",
+    "price": 2236.78,
+    "category": "clothing",
+    "stock": 141,
+    "ratings": {
+      "average": 3.3,
+      "count": 111
+    },
+    "tags": [
+      "new",
+      "limited",
+      "featured"
+    ]
+  },
+  {
+    "id": 23,
+    "title": "Deluxe Vase 404",
+    "price": 2011.58,
+    "category": "home",
+    "stock": 88,
+    "ratings": {
+      "average": 4.9,
+      "count": 428
+    },
+    "tags": [
+      "bestseller"
+    ]
+  },
+  {
+    "id": 24,
+    "title": "Modern Gloves 257",
+    "price": 996.32,
+    "category": "sports",
+    "stock": 189,
+    "ratings": {
+      "average": 4.3,
+      "count": 328
+    },
+    "tags": [
+      "sale",
+      "featured",
+      "limited"
+    ]
+  },
+  {
+    "id": 25,
+    "title": "Classic Guide 585",
+    "price": 2003.25,
+    "category": "books",
+    "stock": 88,
+    "ratings": {
+      "average": 2.8,
+      "count": 99
+    },
+    "tags": [
+      "sale",
+      "limited",
+      "bestseller"
+    ]
+  },
+  {
+    "id": 26,
+    "title": "Ultra Laptop 456",
+    "price": 749.91,
+    "category": "electronics",
+    "stock": 109,
+    "ratings": {
+      "average": 3.3,
+      "count": 484
+    },
+    "tags": [
+      "new",
+      "sale"
+    ]
+  },
+  {
+    "id": 27,
+    "title": "Premium Jacket 743",
+    "price": 1555.11,
+    "category": "clothing",
+    "stock": 78,
+    "ratings": {
+      "average": 4.9,
+      "count": 431
+    },
+    "tags": [
+      "bestseller"
+    ]
+  },
+  {
+    "id": 28,
+    "title": "Classic Chair 131",
+    "price": 1838.69,
+    "category": "home",
+    "stock": 105,
+    "ratings": {
+      "average": 3.2,
+      "count": 214
+    },
+    "tags": [
+      "popular"
+    ]
+  },
+  {
+    "id": 29,
+    "title": "Ultra Weights 813",
+    "price": 2155.93,
+    "category": "sports",
+    "stock": 26,
+    "ratings": {
+      "average": 3.1,
+      "count": 328
+    },
+    "tags": [
+      "featured",
+      "new"
+    ]
+  },
+  {
+    "id": 30,
+    "title": "Modern Guide 815",
+    "price": 700.8,
+    "category": "books",
+    "stock": 160,
+    "ratings": {
+      "average": 5.0,
+      "count": 117
+    },
+    "tags": [
+      "sale"
+    ]
+  },
+  {
+    "id": 31,
+    "title": "Deluxe Headphones 107",
+    "price": 1320.86,
+    "category": "electronics",
+    "stock": 34,
+    "ratings": {
+      "average": 3.8,
+      "count": 107
+    },
+    "tags": [
+      "limited"
+    ]
+  },
+  {
+    "id": 32,
+    "title": "Pro Dress 384",
+    "price": 80.31,
+    "category": "clothing",
+    "stock": 85,
+    "ratings": {
+      "average": 4.8,
+      "count": 274
+    },
+    "tags": [
+      "bestseller",
+      "popular",
+      "featured"
+    ]
+  },
+  {
+    "id": 33,
+    "title": "Classic Lamp 785",
+    "price": 465.32,
+    "category": "home",
+    "stock": 135,
+    "ratings": {
+      "average": 4.7,
+      "count": 269
+    },
+    "tags": [
+      "popular"
+    ]
+  },
+  {
+    "id": 34,
+    "title": "Pro Shoes 688",
+    "price": 25.51,
+    "category": "sports",
+    "stock": 200,
+    "ratings": {
+      "average": 2.5,
+      "count": 333
+    },
+    "tags": [
+      "new",
+      "featured"
+    ]
+  },
+  {
+    "id": 35,
+    "title": "Deluxe Dictionary 823",
+    "price": 1268.06,
+    "category": "books",
+    "stock": 192,
+    "ratings": {
+      "average": 3.1,
+      "count": 74
+    },
+    "tags": [
+      "bestseller"
+    ]
+  },
+  {
+    "id": 36,
+    "title": "Premium Laptop 901",
+    "price": 2133.05,
+    "category": "electronics",
+    "stock": 67,
+    "ratings": {
+      "average": 4.7,
+      "count": 471
+    },
+    "tags": [
+      "popular"
+    ]
+  },
+  {
+    "id": 37,
+    "title": "Modern Dress 168",
+    "price": 2313.15,
+    "category": "clothing",
+    "stock": 2,
+    "ratings": {
+      "average": 3.1,
+      "count": 139
+    },
+    "tags": [
+      "limited",
+      "popular",
+      "new"
+    ]
+  },
+  {
+    "id": 38,
+    "title": "Premium Lamp 482",
+    "price": 189.96,
+    "category": "home",
+    "stock": 63,
+    "ratings": {
+      "average": 4.2,
+      "count": 425
+    },
+    "tags": [
+      "new",
+      "featured",
+      "bestseller"
+    ]
+  },
+  {
+    "id": 39,
+    "title": "Deluxe Gloves 982",
+    "price": 299.2,
+    "category": "sports",
+    "stock": 38,
+    "ratings": {
+      "average": 3.7,
+      "count": 495
+    },
+    "tags": [
+      "popular"
+    ]
+  },
+  {
+    "id": 40,
+    "title": "Basic Textbook 867",
+    "price": 645.66,
+    "category": "books",
+    "stock": 200,
+    "ratings": {
+      "average": 2.8,
+      "count": 307
+    },
+    "tags": [
+      "featured"
+    ]
+  },
+  {
+    "id": 41,
+    "title": "Premium Speaker 731",
+    "price": 1301.83,
+    "category": "electronics",
+    "stock": 120,
+    "ratings": {
+      "average": 3.5,
+      "count": 374
+    },
+    "tags": [
+      "new"
+    ]
+  },
+  {
+    "id": 42,
+    "title": "Modern Shoes 860",
+    "price": 2011.7,
+    "category": "clothing",
+    "stock": 195,
+    "ratings": {
+      "average": 4.2,
+      "count": 387
+    },
+    "tags": [
+      "popular"
+    ]
+  },
+  {
+    "id": 43,
+    "title": "Premium Vase 112",
+    "price": 1702.81,
+    "category": "home",
+    "stock": 74,
+    "ratings": {
+      "average": 3.0,
+      "count": 409
+    },
+    "tags": [
+      "new",
+      "popular"
+    ]
+  },
+  {
+    "id": 44,
+    "title": "Deluxe Gloves 371",
+    "price": 2335.13,
+    "category": "sports",
+    "stock": 26,
+    "ratings": {
+      "average": 2.9,
+      "count": 431
+    },
+    "tags": [
+      "limited",
+      "new"
+    ]
+  },
+  {
+    "id": 45,
+    "title": "Premium Manual 500",
+    "price": 917.64,
+    "category": "books",
+    "stock": 123,
+    "ratings": {
+      "average": 2.7,
+      "count": 447
+    },
+    "tags": [
+      "popular",
+      "sale"
+    ]
+  },
+  {
+    "id": 46,
+    "title": "Deluxe Laptop 255",
+    "price": 2389.44,
+    "category": "electronics",
+    "stock": 119,
+    "ratings": {
+      "average": 4.3,
+      "count": 321
+    },
+    "tags": [
+      "limited",
+      "new",
+      "sale"
+    ]
+  },
+  {
+    "id": 47,
+    "title": "Modern Shirt 227",
+    "price": 215.91,
+    "category": "clothing",
+    "stock": 92,
+    "ratings": {
+      "average": 4.2,
+      "count": 135
+    },
+    "tags": [
+      "limited",
+      "sale",
+      "popular"
+    ]
+  },
+  {
+    "id": 48,
+    "title": "Pro Lamp 400",
+    "price": 1369.13,
+    "category": "home",
+    "stock": 158,
+    "ratings": {
+      "average": 3.3,
+      "count": 118
+    },
+    "tags": [
+      "sale",
+      "limited",
+      "new"
+    ]
+  },
+  {
+    "id": 49,
+    "title": "Basic Weights 781",
+    "price": 92.38,
+    "category": "sports",
+    "stock": 175,
+    "ratings": {
+      "average": 4.6,
+      "count": 188
+    },
+    "tags": [
+      "bestseller"
+    ]
+  },
+  {
+    "id": 50,
+    "title": "Basic Biography 531",
+    "price": 1526.52,
+    "category": "books",
+    "stock": 13,
+    "ratings": {
+      "average": 4.4,
+      "count": 175
+    },
+    "tags": [
+      "bestseller",
+      "limited",
+      "sale"
+    ]
+  },
+  {
+    "id": 51,
+    "title": "Ultra Headphones 892",
+    "price": 1809.73,
+    "category": "electronics",
+    "stock": 86,
+    "ratings": {
+      "average": 4.7,
+      "count": 426
+    },
+    "tags": [
+      "new",
+      "popular",
+      "featured"
+    ]
+  },
+  {
+    "id": 52,
+    "title": "Modern Shoes 903",
+    "price": 1657.69,
+    "category": "clothing",
+    "stock": 15,
+    "ratings": {
+      "average": 3.2,
+      "count": 75
+    },
+    "tags": [
+      "bestseller",
+      "featured"
+    ]
+  },
+  {
+    "id": 53,
+    "title": "Deluxe Lamp 554",
+    "price": 195.7,
+    "category": "home",
+    "stock": 61,
+    "ratings": {
+      "average": 4.8,
+      "count": 189
+    },
+    "tags": [
+      "bestseller"
+    ]
+  },
+  {
+    "id": 54,
+    "title": "Basic Weights 854",
+    "price": 1145.42,
+    "category": "sports",
+    "stock": 144,
+    "ratings": {
+      "average": 4.5,
+      "count": 364
+    },
+    "tags": [
+      "sale",
+      "limited",
+      "popular"
+    ]
+  },
+  {
+    "id": 55,
+    "title": "Classic Manual 557",
+    "price": 272.76,
+    "category": "books",
+    "stock": 121,
+    "ratings": {
+      "average": 3.7,
+      "count": 172
+    },
+    "tags": [
+      "new",
+      "sale",
+      "popular"
+    ]
+  },
+  {
+    "id": 56,
+    "title": "Deluxe Tablet 617",
+    "price": 587.42,
+    "category": "electronics",
+    "stock": 59,
+    "ratings": {
+      "average": 4.0,
+      "count": 488
+    },
+    "tags": [
+      "bestseller",
+      "featured"
+    ]
+  },
+  {
+    "id": 57,
+    "title": "Classic Jacket 802",
+    "price": 224.12,
+    "category": "clothing",
+    "stock": 122,
+    "ratings": {
+      "average": 3.1,
+      "count": 294
+    },
+    "tags": [
+      "bestseller",
+      "featured"
+    ]
+  },
+  {
+    "id": 58,
+    "title": "Classic Vase 424",
+    "price": 408.83,
+    "category": "home",
+    "stock": 143,
+    "ratings": {
+      "average": 3.4,
+      "count": 352
+    },
+    "tags": [
+      "limited",
+      "bestseller"
+    ]
+  },
+  {
+    "id": 59,
+    "title": "Classic Racket 769",
+    "price": 621.15,
+    "category": "sports",
+    "stock": 130,
+    "ratings": {
+      "average": 4.5,
+      "count": 227
+    },
+    "tags": [
+      "popular"
+    ]
+  },
+  {
+    "id": 60,
+    "title": "Basic Dictionary 268",
+    "price": 1481.49,
+    "category": "books",
+    "stock": 114,
+    "ratings": {
+      "average": 4.6,
+      "count": 324
+    },
+    "tags": [
+      "sale"
+    ]
+  },
+  {
+    "id": 61,
+    "title": "Ultra Speaker 112",
+    "price": 131.14,
+    "category": "electronics",
+    "stock": 167,
+    "ratings": {
+      "average": 3.9,
+      "count": 454
+    },
+    "tags": [
+      "popular",
+      "bestseller",
+      "new"
+    ]
+  },
+  {
+    "id": 62,
+    "title": "Modern Sweater 660",
+    "price": 453.47,
+    "category": "clothing",
+    "stock": 146,
+    "ratings": {
+      "average": 4.4,
+      "count": 467
+    },
+    "tags": [
+      "featured"
+    ]
+  },
+  {
+    "id": 63,
+    "title": "Ultra Clock 940",
+    "price": 2087.17,
+    "category": "home",
+    "stock": 29,
+    "ratings": {
+      "average": 2.8,
+      "count": 130
+    },
+    "tags": [
+      "limited",
+      "new"
+    ]
+  },
+  {
+    "id": 64,
+    "title": "Deluxe Shoes 424",
+    "price": 268.79,
+    "category": "sports",
+    "stock": 134,
+    "ratings": {
+      "average": 3.5,
+      "count": 422
+    },
+    "tags": [
+      "popular",
+      "new",
+      "featured"
+    ]
+  },
+  {
+    "id": 65,
+    "title": "Premium Guide 593",
+    "price": 85.31,
+    "category": "books",
+    "stock": 131,
+    "ratings": {
+      "average": 2.6,
+      "count": 380
+    },
+    "tags": [
+      "new",
+      "bestseller",
+      "popular"
+    ]
+  },
+  {
+    "id": 66,
+    "title": "Pro Headphones 438",
+    "price": 2086.91,
+    "category": "electronics",
+    "stock": 177,
+    "ratings": {
+      "average": 3.9,
+      "count": 380
+    },
+    "tags": [
+      "popular",
+      "new"
+    ]
+  },
+  {
+    "id": 67,
+    "title": "Basic Sweater 154",
+    "price": 2172.14,
+    "category": "clothing",
+    "stock": 170,
+    "ratings": {
+      "average": 4.8,
+      "count": 177
+    },
+    "tags": [
+      "limited",
+      "bestseller"
+    ]
+  },
+  {
+    "id": 68,
+    "title": "Ultra Chair 242",
+    "price": 1182.69,
+    "category": "home",
+    "stock": 192,
+    "ratings": {
+      "average": 2.6,
+      "count": 458
+    },
+    "tags": [
+      "sale"
+    ]
+  },
+  {
+    "id": 69,
+    "title": "Premium Weights 409",
+    "price": 244.76,
+    "category": "sports",
+    "stock": 61,
+    "ratings": {
+      "average": 2.6,
+      "count": 297
+    },
+    "tags": [
+      "popular"
+    ]
+  },
+  {
+    "id": 70,
+    "title": "Ultra Novel 569",
+    "price": 1446.89,
+    "category": "books",
+    "stock": 76,
+    "ratings": {
+      "average": 2.9,
+      "count": 88
+    },
+    "tags": [
+      "new",
+      "featured",
+      "popular"
+    ]
+  },
+  {
+    "id": 71,
+    "title": "Classic Tablet 799",
+    "price": 1106.34,
+    "category": "electronics",
+    "stock": 131,
+    "ratings": {
+      "average": 4.7,
+      "count": 332
+    },
+    "tags": [
+      "bestseller"
+    ]
+  },
+  {
+    "id": 72,
+    "title": "Ultra Dress 786",
+    "price": 2119.9,
+    "category": "clothing",
+    "stock": 97,
+    "ratings": {
+      "average": 3.8,
+      "count": 241
+    },
+    "tags": [
+      "popular"
+    ]
+  },
+  {
+    "id": 73,
+    "title": "Basic Clock 588",
+    "price": 1917.09,
+    "category": "home",
+    "stock": 114,
+    "ratings": {
+      "average": 3.1,
+      "count": 330
+    },
+    "tags": [
+      "limited",
+      "featured"
+    ]
+  },
+  {
+    "id": 74,
+    "title": "Classic Gloves 424",
+    "price": 1245.52,
+    "category": "sports",
+    "stock": 3,
+    "ratings": {
+      "average": 2.9,
+      "count": 136
+    },
+    "tags": [
+      "featured",
+      "new",
+      "bestseller"
+    ]
+  },
+  {
+    "id": 75,
+    "title": "Ultra Guide 882",
+    "price": 380.32,
+    "category": "books",
+    "stock": 74,
+    "ratings": {
+      "average": 3.9,
+      "count": 340
+    },
+    "tags": [
+      "new",
+      "popular",
+      "bestseller"
+    ]
+  },
+  {
+    "id": 76,
+    "title": "Ultra Laptop 415",
+    "price": 1504.19,
+    "category": "electronics",
+    "stock": 64,
+    "ratings": {
+      "average": 3.0,
+      "count": 66
+    },
+    "tags": [
+      "limited"
+    ]
+  },
+  {
+    "id": 77,
+    "title": "Basic Hat 843",
+    "price": 2084.87,
+    "category": "clothing",
+    "stock": 155,
+    "ratings": {
+      "average": 4.2,
+      "count": 303
+    },
+    "tags": [
+      "sale",
+      "featured",
+      "bestseller"
+    ]
+  },
+  {
+    "id": 78,
+    "title": "Deluxe Mirror 599",
+    "price": 546.97,
+    "category": "home",
+    "stock": 133,
+    "ratings": {
+      "average": 3.6,
+      "count": 191
+    },
+    "tags": [
+      "popular",
+      "featured"
+    ]
+  },
+  {
+    "id": 79,
+    "title": "Modern Gloves 255",
+    "price": 1910.0,
+    "category": "sports",
+    "stock": 178,
+    "ratings": {
+      "average": 3.1,
+      "count": 49
+    },
+    "tags": [
+      "popular",
+      "featured",
+      "limited"
+    ]
+  },
+  {
+    "id": 80,
+    "title": "Classic Guide 502",
+    "price": 1609.0,
+    "category": "books",
+    "stock": 193,
+    "ratings": {
+      "average": 3.4,
+      "count": 235
+    },
+    "tags": [
+      "new",
+      "limited"
+    ]
+  },
+  {
+    "id": 81,
+    "title": "Pro Phone 752",
+    "price": 776.77,
+    "category": "electronics",
+    "stock": 54,
+    "ratings": {
+      "average": 4.9,
+      "count": 34
+    },
+    "tags": [
+      "sale",
+      "bestseller"
+    ]
+  },
+  {
+    "id": 82,
+    "title": "Modern Pants 350",
+    "price": 1019.51,
+    "category": "clothing",
+    "stock": 33,
+    "ratings": {
+      "average": 2.5,
+      "count": 291
+    },
+    "tags": [
+      "sale",
+      "new",
+      "popular"
+    ]
+  },
+  {
+    "id": 83,
+    "title": "Classic Clock 494",
+    "price": 42.52,
+    "category": "home",
+    "stock": 53,
+    "ratings": {
+      "average": 4.7,
+      "count": 406
+    },
+    "tags": [
+      "featured"
+    ]
+  },
+  {
+    "id": 84,
+    "title": "Classic Racket 690",
+    "price": 313.79,
+    "category": "sports",
+    "stock": 34,
+    "ratings": {
+      "average": 3.2,
+      "count": 362
+    },
+    "tags": [
+      "new",
+      "popular"
+    ]
+  },
+  {
+    "id": 85,
+    "title": "Ultra Dictionary 199",
+    "price": 805.33,
+    "category": "books",
+    "stock": 28,
+    "ratings": {
+      "average": 2.8,
+      "count": 29
+    },
+    "tags": [
+      "popular",
+      "featured",
+      "limited"
+    ]
+  },
+  {
+    "id": 86,
+    "title": "Basic Phone 157",
+    "price": 1735.64,
+    "category": "electronics",
+    "stock": 157,
+    "ratings": {
+      "average": 3.4,
+      "count": 88
+    },
+    "tags": [
+      "featured",
+      "sale",
+      "limited"
+    ]
+  },
+  {
+    "id": 87,
+    "title": "Basic Dress 289",
+    "price": 1304.58,
+    "category": "clothing",
+    "stock": 22,
+    "ratings": {
+      "average": 3.3,
+      "count": 186
+    },
+    "tags": [
+      "popular",
+      "new"
+    ]
+  },
+  {
+    "id": 88,
+    "title": "Modern Vase 363",
+    "price": 1418.6,
+    "category": "home",
+    "stock": 44,
+    "ratings": {
+      "average": 4.1,
+      "count": 461
+    },
+    "tags": [
+      "featured",
+      "sale"
+    ]
+  },
+  {
+    "id": 89,
+    "title": "Pro Ball 821",
+    "price": 1940.62,
+    "category": "sports",
+    "stock": 65,
+    "ratings": {
+      "average": 3.8,
+      "count": 423
+    },
+    "tags": [
+      "bestseller",
+      "sale",
+      "limited"
+    ]
+  },
+  {
+    "id": 90,
+    "title": "Deluxe Biography 995",
+    "price": 370.73,
+    "category": "books",
+    "stock": 125,
+    "ratings": {
+      "average": 3.1,
+      "count": 204
+    },
+    "tags": [
+      "popular",
+      "featured",
+      "new"
+    ]
+  },
+  {
+    "id": 91,
+    "title": "Classic Camera 666",
+    "price": 1665.26,
+    "category": "electronics",
+    "stock": 160,
+    "ratings": {
+      "average": 3.1,
+      "count": 139
+    },
+    "tags": [
+      "popular",
+      "sale"
+    ]
+  },
+  {
+    "id": 92,
+    "title": "Classic Pants 264",
+    "price": 881.21,
+    "category": "clothing",
+    "stock": 177,
+    "ratings": {
+      "average": 2.9,
+      "count": 143
+    },
+    "tags": [
+      "limited",
+      "sale",
+      "bestseller"
+    ]
+  },
+  {
+    "id": 93,
+    "title": "Basic Lamp 754",
+    "price": 2148.92,
+    "category": "home",
+    "stock": 72,
+    "ratings": {
+      "average": 5.0,
+      "count": 200
+    },
+    "tags": [
+      "sale",
+      "bestseller",
+      "featured"
+    ]
+  },
+  {
+    "id": 94,
+    "title": "Pro Shoes 962",
+    "price": 64.65,
+    "category": "sports",
+    "stock": 44,
+    "ratings": {
+      "average": 2.9,
+      "count": 287
+    },
+    "tags": [
+      "featured"
+    ]
+  },
+  {
+    "id": 95,
+    "title": "Ultra Cookbook 331",
+    "price": 1206.78,
+    "category": "books",
+    "stock": 70,
+    "ratings": {
+      "average": 3.6,
+      "count": 277
+    },
+    "tags": [
+      "bestseller"
+    ]
+  },
+  {
+    "id": 96,
+    "title": "Deluxe Laptop 958",
+    "price": 1298.06,
+    "category": "electronics",
+    "stock": 55,
+    "ratings": {
+      "average": 3.8,
+      "count": 31
+    },
+    "tags": [
+      "popular",
+      "featured",
+      "sale"
+    ]
+  },
+  {
+    "id": 97,
+    "title": "Pro Jacket 270",
+    "price": 790.24,
+    "category": "clothing",
+    "stock": 13,
+    "ratings": {
+      "average": 3.2,
+      "count": 129
+    },
+    "tags": [
+      "sale",
+      "popular",
+      "limited"
+    ]
+  },
+  {
+    "id": 98,
+    "title": "Deluxe Rug 567",
+    "price": 885.1,
+    "category": "home",
+    "stock": 99,
+    "ratings": {
+      "average": 3.2,
+      "count": 51
+    },
+    "tags": [
+      "limited",
+      "bestseller"
+    ]
+  },
+  {
+    "id": 99,
+    "title": "Classic Racket 283",
+    "price": 424.18,
+    "category": "sports",
+    "stock": 30,
+    "ratings": {
+      "average": 3.4,
+      "count": 197
+    },
+    "tags": [
+      "sale",
+      "new",
+      "bestseller"
+    ]
+  },
+  {
+    "id": 100,
+    "title": "Premium Cookbook 211",
+    "price": 872.68,
+    "category": "books",
+    "stock": 131,
+    "ratings": {
+      "average": 4.0,
+      "count": 399
+    },
+    "tags": [
+      "bestseller"
+    ]
+  }
+]

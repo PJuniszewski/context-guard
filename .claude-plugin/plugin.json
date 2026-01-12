@@ -1,13 +1,20 @@
 {
-  "name": "trimmer",
+  "name": "context-guard",
   "version": "1.0.0-alpha",
-  "description": "Token guard hook that blocks oversized prompts and offers trimmed JSON payloads",
+  "description": "LLM Epistemic Safety Layer - context integrity enforcement with sampling-aware guardrails",
   "author": {
     "name": "Patryk Juniszewski",
     "email": "p.juniszewski@gmail.com"
   },
   "license": "MIT",
-  "repository": "https://github.com/PJuniszewski/claude-trimmer",
-  "homepage": "https://github.com/PJuniszewski/claude-trimmer#readme",
-  "keywords": ["claude", "tokens", "trimming", "hook", "guard"]
+  "repository": "https://github.com/PJuniszewski/context-guard",
+  "homepage": "https://github.com/PJuniszewski/context-guard#readme",
+  "keywords": ["claude", "tokens", "trimming", "hook", "guard", "epistemic", "safety", "forensics"],
+  "commands": [
+    {
+      "name": "contextguard",
+      "description": "Context Guard utilities - preview trimming, diff, forensics mode",
+      "file": "commands/contextguard.md"
+    }
+  ]
 }

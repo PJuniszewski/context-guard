@@ -1,14 +1,22 @@
-# claude-trimmer
+# context-guard
 
-Token guard hook for Claude Code that blocks oversized prompts and offers automatic JSON trimming.
+**LLM Epistemic Safety Layer** - Context integrity enforcement with sampling-aware guardrails.
+
+Prevents confident hallucinations on incomplete data by automatically detecting when trimming would compromise analytical accuracy.
 
 ## Features
 
+### Layer 1: Automatic Hook Protection
 - **Token counting** via Anthropic API before prompts are processed
 - **Automatic blocking** when prompts exceed configurable limits
-- **JSON extraction** from prompts (wrapper markers, fenced blocks, or raw JSON)
-- **Smart trimming** of JSON payloads (list limiting, field whitelisting, string truncation)
-- **Escape hatches** (`#trimmer:off`, `#trimmer:force`)
+- **Intelligent JSON trimming** with first-last-even sampling strategy
+- **Semantic mode detection** (analysis/summary/forensics)
+- **Forensic question heuristic** - blocks sampling when specific record lookups are detected
+
+### Layer 2: Power User Command
+- `/contextguard preview` - Preview what trimming would do
+- `/contextguard diff` - Compare full vs sampled data
+- `/contextguard search` - Verify if forensic analysis is safe
 
 ## Installation
 
@@ -18,8 +26,8 @@ Token guard hook for Claude Code that blocks oversized prompts and offers automa
 # Add the marketplace (run /plugin, select "Add Marketplace", enter: PJuniszewski/juni-tools-marketplace)
 
 # Install and enable
-claude /plugin install juni-tools:trimmer
-claude /plugin enable trimmer
+claude /plugin install juni-tools:context-guard
+claude /plugin enable context-guard
 ```
 
 ### Set environment variables
@@ -37,12 +45,45 @@ export TOKEN_GUARD_MODEL="claude-sonnet-4-20250514"
 | `TOKEN_GUARD_PROMPT_LIMIT` | `3500` | Block prompts above this token count |
 | `TOKEN_GUARD_MIN_CHARS_BEFORE_COUNT` | `6000` | Skip API call for small prompts |
 | `TOKEN_GUARD_MODE` | `block` | Mode: `block`, `warn`, or `off` |
-| `TOKEN_GUARD_TRIM_MAX_ITEMS` | `5` | Max items per array after trim |
-| `TOKEN_GUARD_TRIM_MAX_STRLEN` | `300` | Max string length after trim |
+
+## Semantic Modes
+
+Context Guard supports three semantic modes that control trimming behavior:
+
+| Mode | Sampling | Use Case |
+|------|----------|----------|
+| `analysis` | Allowed | Default. "What categories exist?", "Price range?" |
+| `summary` | Aggressive | "Describe the data structure" |
+| `forensics` | **BLOCKED** | "Why did request id=X fail?" |
+
+### Mode Markers
+
+Add markers to your prompt to explicitly set the mode:
+
+```
+#trimmer:mode=analysis    # Allow sampling (default)
+#trimmer:mode=summary     # Allow aggressive trimming
+#trimmer:mode=forensics   # Block if data exceeds limit
+```
+
+### Forensic Question Detection
+
+Context Guard automatically detects forensic questions and blocks sampling:
+
+```
+# These patterns trigger forensic blocking:
+"Why did request id=abc123 fail?"
+"What happened to user id: xyz789?"
+"Show details for transaction TX-12345"
+```
+
+To override: add `#trimmer:mode=analysis` or `#trimmer:force`
 
 ## Usage
 
-### When blocked
+### Automatic Hook (Layer 1)
+
+The hook intercepts prompts automatically:
 
 ```
 Prompt: 5000 tokens (limit: 3500). No JSON detected.
@@ -53,7 +94,7 @@ Options:
   - Or reduce payload manually
 ```
 
-### With JSON payload
+### With JSON Payload
 
 Wrap your JSON with markers for automatic trimming:
 
@@ -68,29 +109,69 @@ Analyze this data
 Trimmed files are saved to `.claude/trimmer/`:
 - `trimmed-TIMESTAMP.json` - Pretty printed
 - `trimmed-TIMESTAMP.min.json` - Minified for pasting
-- `trimmed-TIMESTAMP.meta.json` - Statistics
 
-### Escape hatches
+### Power User Command (Layer 2)
+
+```
+/contextguard preview data.json --budget 1000
+/contextguard diff data.json --budget 500
+/contextguard search data.json --query "Why did request id=xyz fail?"
+```
+
+### Escape Hatches
 
 - `#trimmer:off` - Disable for this prompt
-- `#trimmer:force` - Bypass blocking
+- `#trimmer:force` - Bypass all blocking
+- `#trimmer:mode=analysis` - Explicitly allow sampling for forensic-looking questions
 
-## How it works
+## How It Works
+
+### Layer 1: Hook
 
 1. Hook intercepts `UserPromptSubmit` event
 2. If prompt > `MIN_CHARS`, count tokens via Anthropic API
-3. If tokens > `LIMIT`:
+3. Detect semantic mode from markers or infer from question
+4. If forensic question detected without explicit mode → BLOCK
+5. If tokens > `LIMIT`:
    - Extract JSON from prompt (if present)
-   - Trim: limit arrays, whitelist fields, truncate strings
-   - Save trimmed files
+   - Apply first-last-even sampling strategy
+   - Include trim report in additionalContext
    - Block with exit code 2
-4. Otherwise, allow prompt
+6. Otherwise, allow prompt
+
+### Layer 2: Command
+
+Provides direct access to trimming utilities for power users who need to understand what's happening before asking questions.
+
+## Epistemic Safety
+
+Context Guard prevents confident hallucinations by:
+
+1. **Explicit warnings** in trim reports about sampling limitations
+2. **Forensic mode** that blocks instead of sampling
+3. **Heuristic detection** of forensic questions
+4. **First-last-even sampling** that preserves data distribution
+
+### What Might Be Hidden
+
+When data is sampled:
+- Single-record anomalies in middle positions
+- Trend reversals after first 60% of data
+- Rare outliers that fall outside sample
+
+For forensic queries requiring ALL records, use forensics mode.
 
 ## Tests
 
 ```bash
-python3 tests/test_extract_json.py
-python3 tests/test_trim.py
+# Unit tests
+pytest tests/test_semantic_modes.py -v
+
+# LLM context tests (requires ANTHROPIC_API_KEY)
+pytest tests/test_llm_context.py -v -m llm
+
+# Adversarial tests
+pytest tests/test_llm_adversarial.py -v -m llm
 ```
 
 ## License

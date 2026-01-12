@@ -18,19 +18,92 @@ from typing import Any, Optional
 script_dir = Path(__file__).parent
 sys.path.insert(0, str(script_dir))
 
+import re
+
 from token_count import count_tokens_safe
-from trim_lib import TrimPolicy, TrimResult, extract_json_from_prompt, trim_payload
+from trim_lib import (
+    TrimPolicy,
+    TrimResult,
+    extract_json_from_prompt,
+    trim_payload,
+    # New intelligent trimming imports
+    TokenBudget,
+    SamplingStrategy,
+    MinificationConfig,
+    IntelligentTrimReport,
+    intelligent_trim,
+    TrimMode,
+)
 
 # Configuration defaults
 DEFAULT_MODEL = "claude-sonnet-4-20250514"
 DEFAULT_PROMPT_LIMIT = 3500
 DEFAULT_WARN_LIMIT = 2500
 DEFAULT_MIN_CHARS = 6000
-DEFAULT_MODE = "block"  # block = stop and show reason (auto mode may not be supported)
+DEFAULT_MODE = "context"  # context, block, warn, off
+DEFAULT_CLIPBOARD = True  # Copy minified to clipboard when blocking
+DEFAULT_SAMPLING_STRATEGY = "first_last_even"  # first_n, first_last_even
+DEFAULT_REMOVE_NULL = True
+DEFAULT_ALIAS_KEYS = False
+DEFAULT_MIN_RECORDS = 2
 
 # Escape hatch markers
 MARKER_OFF = "#trimmer:off"
 MARKER_FORCE = "#trimmer:force"
+
+# Semantic mode markers
+MARKER_MODE_ANALYSIS = "#trimmer:mode=analysis"
+MARKER_MODE_SUMMARY = "#trimmer:mode=summary"
+MARKER_MODE_FORENSICS = "#trimmer:mode=forensics"
+
+# Forensic question patterns (fail-safe heuristic)
+FORENSIC_PATTERNS = [
+    r"request\s+id[=:]\s*\S+",           # "request id=abc123"
+    r"user\s+id[=:]\s*\S+",              # "user id=xyz"
+    r"order\s+id[=:]\s*\S+",             # "order id=123"
+    r"transaction\s+id[=:]\s*\S+",       # "transaction id=TX-123"
+    r"id[=:]\s*['\"]?\w{6,}['\"]?",      # "id=abc123" or "id: 'xyz789'"
+    r"why\s+did\s+.+\s+fail",            # "why did X fail"
+    r"what\s+happened\s+to\s+\S+",       # "what happened to request X"
+    r"find\s+.+\s+with\s+id",            # "find record with id X"
+    r"show\s+me\s+.+\s+for\s+id",        # "show me details for id X"
+    r"specific\s+\w+\s+id",              # "specific request id"
+]
+
+
+def detect_semantic_mode(prompt: str) -> TrimMode:
+    """
+    Detect semantic mode from prompt markers.
+
+    Returns:
+        TrimMode based on explicit marker, defaults to ANALYSIS.
+    """
+    if MARKER_MODE_FORENSICS in prompt:
+        return TrimMode.FORENSICS
+    if MARKER_MODE_SUMMARY in prompt:
+        return TrimMode.SUMMARY
+    if MARKER_MODE_ANALYSIS in prompt:
+        return TrimMode.ANALYSIS
+    return TrimMode.ANALYSIS  # Default
+
+
+def detect_forensic_question(prompt: str) -> tuple[bool, str]:
+    """
+    Detect if prompt contains a forensic question (asks about specific record).
+
+    This is a fail-safe heuristic:
+    - It NEVER changes the mode
+    - It ONLY triggers blocking if forensic question detected without explicit mode
+    - Only explicit marker can unlock
+
+    Returns:
+        Tuple of (is_forensic, matched_pattern)
+    """
+    for pattern in FORENSIC_PATTERNS:
+        match = re.search(pattern, prompt, re.IGNORECASE)
+        if match:
+            return True, match.group(0)
+    return False, ""
 
 
 def debug_log(msg: str) -> None:
@@ -45,13 +118,60 @@ def debug_log(msg: str) -> None:
 
 def get_config() -> dict[str, Any]:
     """Load configuration from environment variables."""
+    clipboard_env = os.environ.get("TOKEN_GUARD_CLIPBOARD", str(DEFAULT_CLIPBOARD))
+    remove_null_env = os.environ.get("TOKEN_GUARD_REMOVE_NULL", str(DEFAULT_REMOVE_NULL))
+    alias_keys_env = os.environ.get("TOKEN_GUARD_ALIAS_KEYS", str(DEFAULT_ALIAS_KEYS))
+
+    # Parse sampling strategy
+    strategy_str = os.environ.get("TOKEN_GUARD_SAMPLING_STRATEGY", DEFAULT_SAMPLING_STRATEGY).lower()
+    try:
+        sampling_strategy = SamplingStrategy(strategy_str)
+    except ValueError:
+        sampling_strategy = SamplingStrategy.FIRST_LAST_EVEN
+
     return {
         "model": os.environ.get("TOKEN_GUARD_MODEL", DEFAULT_MODEL),
         "prompt_limit": int(os.environ.get("TOKEN_GUARD_PROMPT_LIMIT", DEFAULT_PROMPT_LIMIT)),
         "warn_limit": int(os.environ.get("TOKEN_GUARD_WARN_LIMIT", DEFAULT_WARN_LIMIT)),
         "min_chars": int(os.environ.get("TOKEN_GUARD_MIN_CHARS_BEFORE_COUNT", DEFAULT_MIN_CHARS)),
         "mode": os.environ.get("TOKEN_GUARD_MODE", DEFAULT_MODE).lower(),
+        "clipboard": clipboard_env.lower() in ("true", "1", "yes"),
+        # Intelligent trimming config
+        "sampling_strategy": sampling_strategy,
+        "remove_null": remove_null_env.lower() in ("true", "1", "yes"),
+        "alias_keys": alias_keys_env.lower() in ("true", "1", "yes"),
+        "min_records": int(os.environ.get("TOKEN_GUARD_MIN_RECORDS", DEFAULT_MIN_RECORDS)),
     }
+
+
+def copy_to_clipboard(text: str) -> bool:
+    """Copy text to clipboard. Returns True on success."""
+    import platform
+    import subprocess
+
+    try:
+        system = platform.system()
+        if system == "Darwin":  # macOS
+            proc = subprocess.Popen(["pbcopy"], stdin=subprocess.PIPE)
+            proc.communicate(text.encode("utf-8"))
+            return proc.returncode == 0
+        elif system == "Linux":
+            # Try xclip first, then xsel
+            for cmd in [["xclip", "-selection", "clipboard"], ["xsel", "--clipboard", "--input"]]:
+                try:
+                    proc = subprocess.Popen(cmd, stdin=subprocess.PIPE)
+                    proc.communicate(text.encode("utf-8"))
+                    if proc.returncode == 0:
+                        return True
+                except FileNotFoundError:
+                    continue
+        elif system == "Windows":
+            proc = subprocess.Popen(["clip"], stdin=subprocess.PIPE, shell=True)
+            proc.communicate(text.encode("utf-8"))
+            return proc.returncode == 0
+    except Exception:
+        pass
+    return False
 
 
 def out(obj: dict, exit_code: int = 0) -> None:
@@ -89,12 +209,94 @@ def warn(reason: str) -> None:
     })
 
 
+def auto_replace(new_prompt: str, info: str) -> None:
+    """Replace prompt with new content and continue (NOT SUPPORTED by Claude Code)."""
+    print(info, file=sys.stderr)
+    out({
+        "hookSpecificOutput": {
+            "hookEventName": "UserPromptSubmit",
+            "newPrompt": new_prompt,
+        },
+        "suppressOutput": True,
+    })
+
+
+def add_context(context: str, info: str) -> None:
+    """Add context to the conversation and allow prompt to continue."""
+    print(info, file=sys.stderr)
+    out({
+        "hookSpecificOutput": {
+            "hookEventName": "UserPromptSubmit",
+            "additionalContext": context,
+        },
+        "suppressOutput": True,
+    })
+
+
+def show_tui_menu(
+    original_tokens: int,
+    trimmed_tokens: int,
+    limit: int,
+    trim_result: TrimResult,
+    minified_json: str,
+    original_prompt: str,
+) -> Optional[str]:
+    """
+    Show interactive TUI menu for user choice.
+
+    Returns:
+        - minified_json: user chose to continue with minified
+        - original_prompt: user chose to force original
+        - None: user chose to cancel
+    """
+    reduction = original_tokens - trimmed_tokens
+    reduction_pct = (reduction / original_tokens * 100) if original_tokens > 0 else 0
+    still_over = trimmed_tokens > limit
+    notes_str = "; ".join(trim_result.notes) if trim_result.notes else "trimmed"
+
+    # Build menu
+    print("\n" + "─" * 50, file=sys.stderr)
+    print("  TRIMMER: Prompt exceeds token limit", file=sys.stderr)
+    print("─" * 50, file=sys.stderr)
+    print(f"  Original: {original_tokens} tokens (limit: {limit})", file=sys.stderr)
+    print(f"  Trimmed:  {trimmed_tokens} tokens (-{reduction}, -{reduction_pct:.0f}%)", file=sys.stderr)
+
+    if still_over:
+        print(f"  Status:   Still over by {trimmed_tokens - limit} tokens", file=sys.stderr)
+    else:
+        print(f"  Status:   Now under limit", file=sys.stderr)
+
+    print(f"  Actions:  {notes_str}", file=sys.stderr)
+    print("─" * 50, file=sys.stderr)
+    print("", file=sys.stderr)
+    print("  [1] Continue with minified JSON", file=sys.stderr)
+    print("  [2] Force original (bypass trimmer)", file=sys.stderr)
+    print("  [3] Cancel", file=sys.stderr)
+    print("", file=sys.stderr)
+
+    # Read choice from /dev/tty (works even when stdin is piped)
+    try:
+        with open("/dev/tty", "r") as tty:
+            print("  Choice [1/2/3]: ", file=sys.stderr, end="", flush=True)
+            choice = tty.readline().strip()
+    except (OSError, IOError):
+        # /dev/tty not available (non-interactive), default to block
+        return None
+
+    if choice == "1":
+        return minified_json
+    elif choice == "2":
+        return original_prompt
+    else:
+        return None
+
+
 def write_trimmed_file(
     trimmed_obj: Any,
     original_tokens: int,
     limit: int,
     method: str,
-    trim_result: TrimResult,
+    report: IntelligentTrimReport,
 ) -> str:
     """
     Write trimmed payload to file.
@@ -132,9 +334,19 @@ def write_trimmed_file(
     meta = {
         "timestamp": datetime.now().isoformat(),
         "original_tokens": original_tokens,
+        "trimmed_tokens": report.trimmed_tokens,
         "limit": limit,
         "extraction_method": method,
-        "trim_stats": trim_result.to_dict(),
+        "sampling_strategy": report.sampling_strategy.value,
+        "arrays_trimmed": [
+            {
+                "path": arr.path,
+                "original_count": arr.original_count,
+                "kept_count": arr.kept_count,
+                "kept_indices": arr.kept_indices,
+            }
+            for arr in report.arrays_trimmed
+        ],
         "files": {
             "pretty": str(pretty_path),
             "minified": str(min_path),
@@ -151,7 +363,8 @@ def format_block_reason(
     limit: int,
     method: str,
     file_path: str,
-    trim_result: TrimResult,
+    report: IntelligentTrimReport,
+    clipboard_copied: bool,
 ) -> str:
     """Format block reason with options for user."""
     # Get relative path for cleaner display
@@ -161,14 +374,36 @@ def format_block_reason(
         rel_path = Path(file_path)
 
     min_path = str(rel_path).replace(".json", ".min.json")
-    notes_str = "; ".join(trim_result.notes) if trim_result.notes else "trimmed"
 
-    return (
-        f"Prompt: {tokens} tokens (limit: {limit})\n"
-        f"Trimmed: {notes_str}\n"
-        f"File: {min_path}\n\n"
-        "Paste content from .min.json or add #trimmer:force to bypass"
-    )
+    # Token comparison
+    reduction = tokens - report.trimmed_tokens
+    reduction_pct = (reduction / tokens * 100) if tokens > 0 else 0
+    still_over = report.trimmed_tokens > limit
+
+    lines = [
+        f"Prompt: {tokens} tokens (limit: {limit})",
+        f"Trimmed: {report.trimmed_tokens} tokens (-{reduction}, -{reduction_pct:.0f}%)",
+    ]
+
+    if still_over:
+        lines.append(f"  Still over limit by {report.trimmed_tokens - limit} tokens")
+    else:
+        lines.append(f"  Now under limit")
+
+    # Show array trimming summary
+    if report.arrays_trimmed:
+        for arr in report.arrays_trimmed:
+            lines.append(f"  {arr.path}: {arr.original_count} -> {arr.kept_count} records ({arr.strategy})")
+
+    lines.append(f"File: {min_path}")
+    lines.append("")
+
+    if clipboard_copied:
+        lines.append("Minified JSON copied to clipboard - just paste (Cmd+V)")
+    else:
+        lines.append("Paste content from .min.json or add #trimmer:force to bypass")
+
+    return "\n".join(lines)
 
 
 def format_extraction_failed_reason(tokens: int, limit: int) -> str:
@@ -244,6 +479,51 @@ def run_hook(hook_input: dict[str, Any]) -> None:
     if tokens <= threshold:
         allow()
 
+    # ==========================================================================
+    # SEMANTIC MODE DETECTION
+    # ==========================================================================
+
+    # Detect semantic mode from markers
+    semantic_mode = detect_semantic_mode(prompt)
+    debug_log(f"Semantic mode: {semantic_mode.value}")
+
+    # Check for forensic question heuristic (fail-safe)
+    is_forensic, forensic_match = detect_forensic_question(prompt)
+
+    if is_forensic and semantic_mode == TrimMode.ANALYSIS:
+        # Forensic question detected but no explicit mode set
+        # FAIL-SAFE: Block unless explicitly allowed
+        has_explicit_allow = (
+            MARKER_MODE_ANALYSIS in prompt or
+            MARKER_FORCE in prompt
+        )
+        if not has_explicit_allow:
+            block(
+                f"FORENSIC QUESTION DETECTED\n"
+                f"Pattern matched: '{forensic_match}'\n\n"
+                f"This question appears to ask about a specific record/ID.\n"
+                f"Sampling may hide the answer you're looking for.\n\n"
+                f"Options:\n"
+                f"  - Add #trimmer:mode=forensics (block if payload too large)\n"
+                f"  - Add #trimmer:mode=analysis (explicitly allow sampling)\n"
+                f"  - Add #trimmer:force (bypass all checks)\n"
+                f"  - Reduce payload size manually"
+            )
+
+    # FORENSICS MODE: No sampling allowed - block if over threshold
+    if semantic_mode == TrimMode.FORENSICS:
+        block(
+            f"FORENSICS MODE: {tokens} tokens exceeds {threshold} limit.\n\n"
+            f"Forensic analysis requires ALL records - sampling not allowed.\n"
+            f"Cannot trim without risking loss of critical data.\n\n"
+            f"Options:\n"
+            f"  - Increase TOKEN_GUARD_PROMPT_LIMIT\n"
+            f"  - Reduce payload size manually\n"
+            f"  - Use #trimmer:mode=analysis if sampling is acceptable"
+        )
+
+    # ==========================================================================
+
     # Over threshold - attempt to extract and trim JSON
     extracted, method = extract_json_from_prompt(prompt)
 
@@ -254,17 +534,35 @@ def run_hook(hook_input: dict[str, Any]) -> None:
             warn(reason)
         block(reason)
 
-    # Trim the payload
-    policy = TrimPolicy.from_env()
-    trim_result = trim_payload(extracted, policy)
+    # Configure intelligent trimming
+    token_budget = TokenBudget(
+        total_budget=threshold,
+        overhead_tokens=50,
+        min_records=config["min_records"],
+    )
+    minification_config = MinificationConfig(
+        remove_null_fields=config["remove_null"],
+        alias_keys=config["alias_keys"],
+    )
+
+    # Trim the payload using intelligent trimming
+    trimmed_data, report = intelligent_trim(
+        data=extracted,
+        token_budget=token_budget,
+        sampling_strategy=config["sampling_strategy"],
+        minification=minification_config,
+    )
+
+    # Create minified JSON string
+    minified_json = json.dumps(trimmed_data, separators=(",", ":"), ensure_ascii=False)
 
     # Write trimmed files for reference
     file_path = write_trimmed_file(
-        trim_result.trimmed,
+        trimmed_data,
         tokens,
         threshold,
         method,
-        trim_result,
+        report,
     )
 
     # Get relative path for display
@@ -273,20 +571,77 @@ def run_hook(hook_input: dict[str, Any]) -> None:
     except ValueError:
         rel_path = Path(file_path)
 
-    notes_str = "; ".join(trim_result.notes) if trim_result.notes else "trimmed"
-
     # Handle based on mode
     if mode == "warn":
         # Warn mode: allow but show warning
+        summary = report.to_summary_line()
         print(f"\n{'─' * 50}", file=sys.stderr)
         print(f"  TRIMMER WARNING: {tokens} tokens (limit {threshold})", file=sys.stderr)
-        print(f"  {notes_str}", file=sys.stderr)
+        print(f"  {summary}", file=sys.stderr)
         print(f"  Trimmed file: {rel_path}", file=sys.stderr)
         print(f"{'─' * 50}\n", file=sys.stderr)
         allow()
 
-    # Block mode: stop and show reason
-    reason = format_block_reason(tokens, threshold, method, file_path, trim_result)
+    if mode == "context":
+        # Context mode: add trimmed JSON as context using intelligent report
+        context_parts = [
+            report.to_claude_context(),
+            "",
+            "TRIMMED JSON DATA (use this instead of the large payload above):",
+            minified_json,
+        ]
+        context = "\n".join(context_parts)
+        info = f"[trimmer] Added trimmed context: {report.original_tokens} -> {report.trimmed_tokens} tokens"
+        add_context(context, info)
+
+    if mode == "auto":
+        # Auto mode: automatically replace with minified (NOT SUPPORTED by Claude Code)
+        reduction = report.original_tokens - report.trimmed_tokens
+        reduction_pct = report.reduction_percentage
+        info = (
+            f"[trimmer] Auto-trimmed: {report.original_tokens} -> {report.trimmed_tokens} tokens "
+            f"(-{reduction}, -{reduction_pct:.0f}%)"
+        )
+        auto_replace(minified_json, info)
+
+    if mode == "interactive":
+        # Interactive mode: show TUI menu (note: doesn't work well in Claude Code)
+        # Create a legacy TrimResult for compatibility with show_tui_menu
+        legacy_result = TrimResult(
+            trimmed=trimmed_data,
+            notes=[report.to_summary_line()],
+            counters={},
+        )
+        choice = show_tui_menu(
+            original_tokens=report.original_tokens,
+            trimmed_tokens=report.trimmed_tokens,
+            limit=threshold,
+            trim_result=legacy_result,
+            minified_json=minified_json,
+            original_prompt=prompt,
+        )
+
+        if choice is None:
+            # User cancelled
+            block("Cancelled by user")
+        elif choice == prompt:
+            # User chose to force original
+            print(f"[trimmer] Force bypass: {report.original_tokens} tokens", file=sys.stderr)
+            allow()
+        else:
+            # User chose minified
+            reduction = report.original_tokens - report.trimmed_tokens
+            print(f"[trimmer] Using minified: {report.trimmed_tokens} tokens (-{reduction})", file=sys.stderr)
+            auto_replace(choice, "")
+
+    # Block mode (default): stop and optionally copy to clipboard
+    clipboard_copied = False
+    if config["clipboard"]:
+        clipboard_copied = copy_to_clipboard(minified_json)
+
+    reason = format_block_reason(
+        tokens, threshold, method, file_path, report, clipboard_copied
+    )
     block(reason)
 
 
@@ -301,11 +656,31 @@ def main() -> None:
             try:
                 with open(file_path, "r", encoding="utf-8") as f:
                     data = json.load(f)
-                policy = TrimPolicy.from_env()
-                result = trim_payload(data, policy)
-                print(json.dumps(result.trimmed, indent=2, ensure_ascii=False))
-                print(f"\nNotes: {result.notes}", file=sys.stderr)
-                print(f"Counters: {result.counters}", file=sys.stderr)
+
+                # Use intelligent trimming
+                config = get_config()
+                token_budget = TokenBudget(
+                    total_budget=config["prompt_limit"],
+                    overhead_tokens=50,
+                    min_records=config["min_records"],
+                )
+                minification_config = MinificationConfig(
+                    remove_null_fields=config["remove_null"],
+                    alias_keys=config["alias_keys"],
+                )
+
+                trimmed_data, report = intelligent_trim(
+                    data=data,
+                    token_budget=token_budget,
+                    sampling_strategy=config["sampling_strategy"],
+                    minification=minification_config,
+                )
+
+                # Output trimmed JSON
+                print(json.dumps(trimmed_data, indent=2, ensure_ascii=False))
+
+                # Output report to stderr
+                print(f"\n{report.to_claude_context()}", file=sys.stderr)
             except Exception as e:
                 print(f"Error: {e}", file=sys.stderr)
                 sys.exit(1)
@@ -314,6 +689,11 @@ def main() -> None:
             print("Usage: trimmer_hook.py [--trim-file <path>]")
             print("  Without args: reads hook input from stdin")
             print("  --trim-file: trim a JSON file directly")
+            print("\nEnvironment variables:")
+            print("  TOKEN_GUARD_PROMPT_LIMIT: Token budget (default: 3500)")
+            print("  TOKEN_GUARD_SAMPLING_STRATEGY: first_n or first_last_even (default: first_last_even)")
+            print("  TOKEN_GUARD_REMOVE_NULL: Remove null/empty fields (default: true)")
+            print("  TOKEN_GUARD_MIN_RECORDS: Minimum records to keep (default: 2)")
             return
 
     # Normal hook mode: read from stdin

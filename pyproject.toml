@@ -1,7 +1,7 @@
 [project]
-name = "claude-trimmer"
-version = "0.1.0"
-description = "Catch oversized pastes and produce trimmed payloads to keep Claude Code context healthy"
+name = "context-guard"
+version = "1.0.0-alpha"
+description = "LLM Epistemic Safety Layer - context integrity enforcement with sampling-aware guardrails"
 readme = "README.md"
 license = { text = "MIT" }
 authors = [
@@ -23,7 +23,7 @@ classifiers = [
     "Topic :: Utilities",
 ]
 requires-python = ">=3.9"
-dependencies = []
+dependencies = ["json-repair>=0.30.0"]
 
 [project.optional-dependencies]
 yaml = ["pyyaml>=6.0"]
@@ -35,9 +35,9 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/patrykjuniszewski/claude-trimmer"
-Repository = "https://github.com/patrykjuniszewski/claude-trimmer"
-Issues = "https://github.com/patrykjuniszewski/claude-trimmer/issues"
+Homepage = "https://github.com/PJuniszewski/context-guard"
+Repository = "https://github.com/PJuniszewski/context-guard"
+Issues = "https://github.com/PJuniszewski/context-guard/issues"
 
 [build-system]
 requires = ["setuptools>=61.0"]

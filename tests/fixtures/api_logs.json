@@ -1,0 +1,2002 @@
+[
+  {
+    "id": 17,
+    "timestamp": "2024-01-15T00:06:00Z",
+    "method": "PUT",
+    "endpoint": "/api/auth/login",
+    "status_code": 204,
+    "response_time_ms": 264,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "213.224.28.215"
+  },
+  {
+    "id": 2,
+    "timestamp": "2024-01-15T00:14:00Z",
+    "method": "DELETE",
+    "endpoint": "/api/payments",
+    "status_code": 204,
+    "response_time_ms": 109,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "124.141.84.69"
+  },
+  {
+    "id": 14,
+    "timestamp": "2024-01-15T00:15:00Z",
+    "method": "POST",
+    "endpoint": "/api/auth/logout",
+    "status_code": 500,
+    "response_time_ms": 1819,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "196.8.71.69"
+  },
+  {
+    "id": 181,
+    "timestamp": "2024-01-15T00:24:00Z",
+    "method": "GET",
+    "endpoint": "/api/auth/logout",
+    "status_code": 200,
+    "response_time_ms": 256,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "128.163.46.47"
+  },
+  {
+    "id": 25,
+    "timestamp": "2024-01-15T00:25:00Z",
+    "method": "POST",
+    "endpoint": "/api/inventory",
+    "status_code": 500,
+    "response_time_ms": 2115,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "146.92.108.212"
+  },
+  {
+    "id": 118,
+    "timestamp": "2024-01-15T00:30:00Z",
+    "method": "DELETE",
+    "endpoint": "/api/auth/login",
+    "status_code": 503,
+    "response_time_ms": 1221,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "190.12.226.168"
+  },
+  {
+    "id": 116,
+    "timestamp": "2024-01-15T00:37:00Z",
+    "method": "PUT",
+    "endpoint": "/api/users",
+    "status_code": 401,
+    "response_time_ms": 162,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "ip_address": "134.120.9.72"
+  },
+  {
+    "id": 157,
+    "timestamp": "2024-01-15T00:40:00Z",
+    "method": "GET",
+    "endpoint": "/api/inventory",
+    "status_code": 401,
+    "response_time_ms": 193,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "89.181.139.135"
+  },
+  {
+    "id": 199,
+    "timestamp": "2024-01-15T00:43:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/cart",
+    "status_code": 403,
+    "response_time_ms": 60,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "141.120.5.46"
+  },
+  {
+    "id": 67,
+    "timestamp": "2024-01-15T01:03:00Z",
+    "method": "DELETE",
+    "endpoint": "/api/inventory",
+    "status_code": 201,
+    "response_time_ms": 80,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "229.37.57.38"
+  },
+  {
+    "id": 12,
+    "timestamp": "2024-01-15T01:15:00Z",
+    "method": "GET",
+    "endpoint": "/api/auth/logout",
+    "status_code": 503,
+    "response_time_ms": 3959,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "99.163.162.68"
+  },
+  {
+    "id": 172,
+    "timestamp": "2024-01-15T01:20:00Z",
+    "method": "GET",
+    "endpoint": "/api/cart",
+    "status_code": 200,
+    "response_time_ms": 38,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "7.255.219.3"
+  },
+  {
+    "id": 85,
+    "timestamp": "2024-01-15T01:39:00Z",
+    "method": "POST",
+    "endpoint": "/api/products",
+    "status_code": 201,
+    "response_time_ms": 34,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "48.244.50.26"
+  },
+  {
+    "id": 58,
+    "timestamp": "2024-01-15T01:40:00Z",
+    "method": "PUT",
+    "endpoint": "/api/inventory",
+    "status_code": 503,
+    "response_time_ms": 3529,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "122.67.195.143"
+  },
+  {
+    "id": 10,
+    "timestamp": "2024-01-15T01:49:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/auth/logout",
+    "status_code": 200,
+    "response_time_ms": 135,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "78.224.232.20"
+  },
+  {
+    "id": 34,
+    "timestamp": "2024-01-15T01:55:00Z",
+    "method": "PUT",
+    "endpoint": "/api/payments",
+    "status_code": 200,
+    "response_time_ms": 79,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "222.147.85.156"
+  },
+  {
+    "id": 1,
+    "timestamp": "2024-01-15T02:01:00Z",
+    "method": "POST",
+    "endpoint": "/api/users",
+    "status_code": 200,
+    "response_time_ms": 112,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "129.16.53.75"
+  },
+  {
+    "id": 8,
+    "timestamp": "2024-01-15T02:08:00Z",
+    "method": "PUT",
+    "endpoint": "/api/auth/logout",
+    "status_code": 400,
+    "response_time_ms": 106,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "33.190.1.141"
+  },
+  {
+    "id": 68,
+    "timestamp": "2024-01-15T02:10:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/orders",
+    "status_code": 204,
+    "response_time_ms": 47,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "33.91.12.223"
+  },
+  {
+    "id": 96,
+    "timestamp": "2024-01-15T02:14:00Z",
+    "method": "POST",
+    "endpoint": "/api/reviews",
+    "status_code": 401,
+    "response_time_ms": 156,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "85.121.199.30"
+  },
+  {
+    "id": 111,
+    "timestamp": "2024-01-15T02:14:00Z",
+    "method": "PUT",
+    "endpoint": "/api/auth/login",
+    "status_code": 500,
+    "response_time_ms": 4497,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "8.136.133.57"
+  },
+  {
+    "id": 81,
+    "timestamp": "2024-01-15T02:16:00Z",
+    "method": "GET",
+    "endpoint": "/api/payments",
+    "status_code": 200,
+    "response_time_ms": 254,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "54.125.31.127"
+  },
+  {
+    "id": 80,
+    "timestamp": "2024-01-15T02:17:00Z",
+    "method": "POST",
+    "endpoint": "/api/inventory",
+    "status_code": 503,
+    "response_time_ms": 3840,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "118.27.4.234"
+  },
+  {
+    "id": 175,
+    "timestamp": "2024-01-15T02:32:00Z",
+    "method": "POST",
+    "endpoint": "/api/search",
+    "status_code": 503,
+    "response_time_ms": 4417,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "181.223.55.94"
+  },
+  {
+    "id": 44,
+    "timestamp": "2024-01-15T02:45:00Z",
+    "method": "GET",
+    "endpoint": "/api/orders",
+    "status_code": 204,
+    "response_time_ms": 268,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "ip_address": "169.67.22.192"
+  },
+  {
+    "id": 33,
+    "timestamp": "2024-01-15T02:49:00Z",
+    "method": "PUT",
+    "endpoint": "/api/reviews",
+    "status_code": 200,
+    "response_time_ms": 184,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "ip_address": "118.92.178.252"
+  },
+  {
+    "id": 189,
+    "timestamp": "2024-01-15T02:57:00Z",
+    "method": "POST",
+    "endpoint": "/api/auth/logout",
+    "status_code": 200,
+    "response_time_ms": 235,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "ip_address": "74.120.2.19"
+  },
+  {
+    "id": 99,
+    "timestamp": "2024-01-15T03:10:00Z",
+    "method": "POST",
+    "endpoint": "/api/reviews",
+    "status_code": 201,
+    "response_time_ms": 281,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "13.165.254.86"
+  },
+  {
+    "id": 82,
+    "timestamp": "2024-01-15T03:18:00Z",
+    "method": "GET",
+    "endpoint": "/api/orders",
+    "status_code": 400,
+    "response_time_ms": 73,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "210.89.181.46"
+  },
+  {
+    "id": 74,
+    "timestamp": "2024-01-15T03:20:00Z",
+    "method": "PUT",
+    "endpoint": "/api/auth/login",
+    "status_code": 502,
+    "response_time_ms": 4539,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "119.140.249.249"
+  },
+  {
+    "id": 129,
+    "timestamp": "2024-01-15T03:22:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/users",
+    "status_code": 500,
+    "response_time_ms": 4028,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "205.212.227.214"
+  },
+  {
+    "id": 41,
+    "timestamp": "2024-01-15T03:28:00Z",
+    "method": "GET",
+    "endpoint": "/api/cart",
+    "status_code": 502,
+    "response_time_ms": 2781,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "84.121.183.196"
+  },
+  {
+    "id": 69,
+    "timestamp": "2024-01-15T03:37:00Z",
+    "method": "GET",
+    "endpoint": "/api/products",
+    "status_code": 502,
+    "response_time_ms": 4456,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "119.99.85.182"
+  },
+  {
+    "id": 93,
+    "timestamp": "2024-01-15T03:44:00Z",
+    "method": "PUT",
+    "endpoint": "/api/auth/logout",
+    "status_code": 403,
+    "response_time_ms": 62,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "234.234.41.158"
+  },
+  {
+    "id": 126,
+    "timestamp": "2024-01-15T03:44:00Z",
+    "method": "DELETE",
+    "endpoint": "/api/payments",
+    "status_code": 200,
+    "response_time_ms": 104,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "28.199.118.69"
+  },
+  {
+    "id": 143,
+    "timestamp": "2024-01-15T03:44:00Z",
+    "method": "PUT",
+    "endpoint": "/api/orders",
+    "status_code": 400,
+    "response_time_ms": 131,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "227.182.31.131"
+  },
+  {
+    "id": 115,
+    "timestamp": "2024-01-15T03:54:00Z",
+    "method": "PUT",
+    "endpoint": "/api/orders",
+    "status_code": 502,
+    "response_time_ms": 3329,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "83.197.128.118"
+  },
+  {
+    "id": 15,
+    "timestamp": "2024-01-15T04:02:00Z",
+    "method": "PUT",
+    "endpoint": "/api/orders",
+    "status_code": 401,
+    "response_time_ms": 74,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "232.146.159.5"
+  },
+  {
+    "id": 123,
+    "timestamp": "2024-01-15T04:02:00Z",
+    "method": "DELETE",
+    "endpoint": "/api/users",
+    "status_code": 500,
+    "response_time_ms": 2856,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "ip_address": "18.28.72.53"
+  },
+  {
+    "id": 113,
+    "timestamp": "2024-01-15T04:12:00Z",
+    "method": "DELETE",
+    "endpoint": "/api/auth/login",
+    "status_code": 201,
+    "response_time_ms": 184,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "84.214.249.47"
+  },
+  {
+    "id": 54,
+    "timestamp": "2024-01-15T04:25:00Z",
+    "method": "POST",
+    "endpoint": "/api/cart",
+    "status_code": 404,
+    "response_time_ms": 200,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "21.34.196.135"
+  },
+  {
+    "id": 56,
+    "timestamp": "2024-01-15T04:27:00Z",
+    "method": "PUT",
+    "endpoint": "/api/products",
+    "status_code": 404,
+    "response_time_ms": 73,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "ip_address": "8.49.128.175"
+  },
+  {
+    "id": 100,
+    "timestamp": "2024-01-15T04:35:00Z",
+    "method": "GET",
+    "endpoint": "/api/auth/logout",
+    "status_code": 401,
+    "response_time_ms": 76,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "42.161.12.123"
+  },
+  {
+    "id": 153,
+    "timestamp": "2024-01-15T04:45:00Z",
+    "method": "DELETE",
+    "endpoint": "/api/products",
+    "status_code": 200,
+    "response_time_ms": 208,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "ip_address": "74.13.124.58"
+  },
+  {
+    "id": 97,
+    "timestamp": "2024-01-15T04:49:00Z",
+    "method": "GET",
+    "endpoint": "/api/inventory",
+    "status_code": 404,
+    "response_time_ms": 52,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "154.144.118.129"
+  },
+  {
+    "id": 20,
+    "timestamp": "2024-01-15T04:51:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/payments",
+    "status_code": 503,
+    "response_time_ms": 3793,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "236.111.133.113"
+  },
+  {
+    "id": 9,
+    "timestamp": "2024-01-15T04:56:00Z",
+    "method": "DELETE",
+    "endpoint": "/api/orders",
+    "status_code": 200,
+    "response_time_ms": 129,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "31.2.155.143"
+  },
+  {
+    "id": 7,
+    "timestamp": "2024-01-15T05:05:00Z",
+    "method": "DELETE",
+    "endpoint": "/api/auth/logout",
+    "status_code": 204,
+    "response_time_ms": 115,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "33.197.58.20"
+  },
+  {
+    "id": 49,
+    "timestamp": "2024-01-15T05:20:00Z",
+    "method": "PUT",
+    "endpoint": "/api/search",
+    "status_code": 204,
+    "response_time_ms": 31,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "33.39.13.169"
+  },
+  {
+    "id": 182,
+    "timestamp": "2024-01-15T05:33:00Z",
+    "method": "GET",
+    "endpoint": "/api/products",
+    "status_code": 204,
+    "response_time_ms": 61,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "147.224.211.64"
+  },
+  {
+    "id": 124,
+    "timestamp": "2024-01-15T05:39:00Z",
+    "method": "POST",
+    "endpoint": "/api/auth/login",
+    "status_code": 200,
+    "response_time_ms": 156,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "137.14.246.20"
+  },
+  {
+    "id": 198,
+    "timestamp": "2024-01-15T05:41:00Z",
+    "method": "GET",
+    "endpoint": "/api/users",
+    "status_code": 200,
+    "response_time_ms": 119,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "ip_address": "17.222.112.60"
+  },
+  {
+    "id": 77,
+    "timestamp": "2024-01-15T05:51:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/cart",
+    "status_code": 200,
+    "response_time_ms": 142,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "192.250.83.59"
+  },
+  {
+    "id": 61,
+    "timestamp": "2024-01-15T06:02:00Z",
+    "method": "DELETE",
+    "endpoint": "/api/auth/logout",
+    "status_code": 503,
+    "response_time_ms": 1989,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "ip_address": "191.55.81.93"
+  },
+  {
+    "id": 117,
+    "timestamp": "2024-01-15T06:03:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/products",
+    "status_code": 201,
+    "response_time_ms": 222,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "52.25.221.37"
+  },
+  {
+    "id": 112,
+    "timestamp": "2024-01-15T06:10:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/reviews",
+    "status_code": 200,
+    "response_time_ms": 156,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "171.142.2.23"
+  },
+  {
+    "id": 147,
+    "timestamp": "2024-01-15T06:16:00Z",
+    "method": "PUT",
+    "endpoint": "/api/reviews",
+    "status_code": 404,
+    "response_time_ms": 66,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "ip_address": "154.76.111.96"
+  },
+  {
+    "id": 102,
+    "timestamp": "2024-01-15T06:24:00Z",
+    "method": "PUT",
+    "endpoint": "/api/inventory",
+    "status_code": 502,
+    "response_time_ms": 1644,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "250.29.202.188"
+  },
+  {
+    "id": 148,
+    "timestamp": "2024-01-15T06:27:00Z",
+    "method": "POST",
+    "endpoint": "/api/inventory",
+    "status_code": 204,
+    "response_time_ms": 121,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "224.61.253.25"
+  },
+  {
+    "id": 145,
+    "timestamp": "2024-01-15T06:29:00Z",
+    "method": "PUT",
+    "endpoint": "/api/search",
+    "status_code": 502,
+    "response_time_ms": 2185,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "107.141.214.246"
+  },
+  {
+    "id": 150,
+    "timestamp": "2024-01-15T06:30:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/payments",
+    "status_code": 400,
+    "response_time_ms": 53,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "2.188.217.184"
+  },
+  {
+    "id": 83,
+    "timestamp": "2024-01-15T06:39:00Z",
+    "method": "GET",
+    "endpoint": "/api/payments",
+    "status_code": 500,
+    "response_time_ms": 3939,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "ip_address": "193.190.222.196"
+  },
+  {
+    "id": 187,
+    "timestamp": "2024-01-15T06:39:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/products",
+    "status_code": 200,
+    "response_time_ms": 264,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "77.212.63.225"
+  },
+  {
+    "id": 71,
+    "timestamp": "2024-01-15T06:49:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/search",
+    "status_code": 401,
+    "response_time_ms": 160,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "108.159.95.116"
+  },
+  {
+    "id": 63,
+    "timestamp": "2024-01-15T06:55:00Z",
+    "method": "POST",
+    "endpoint": "/api/search",
+    "status_code": 200,
+    "response_time_ms": 83,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "37.32.160.111"
+  },
+  {
+    "id": 30,
+    "timestamp": "2024-01-15T06:57:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/reviews",
+    "status_code": 200,
+    "response_time_ms": 115,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "ip_address": "37.178.134.204"
+  },
+  {
+    "id": 192,
+    "timestamp": "2024-01-15T07:12:00Z",
+    "method": "POST",
+    "endpoint": "/api/auth/logout",
+    "status_code": 500,
+    "response_time_ms": 2561,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "82.2.53.115"
+  },
+  {
+    "id": 87,
+    "timestamp": "2024-01-15T07:13:00Z",
+    "method": "POST",
+    "endpoint": "/api/auth/login",
+    "status_code": 404,
+    "response_time_ms": 103,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "220.15.0.92"
+  },
+  {
+    "id": 57,
+    "timestamp": "2024-01-15T07:22:00Z",
+    "method": "PUT",
+    "endpoint": "/api/search",
+    "status_code": 500,
+    "response_time_ms": 1123,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "133.249.218.232"
+  },
+  {
+    "id": 137,
+    "timestamp": "2024-01-15T07:37:00Z",
+    "method": "DELETE",
+    "endpoint": "/api/users",
+    "status_code": 200,
+    "response_time_ms": 233,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "23.242.243.138"
+  },
+  {
+    "id": 180,
+    "timestamp": "2024-01-15T07:52:00Z",
+    "method": "POST",
+    "endpoint": "/api/search",
+    "status_code": 201,
+    "response_time_ms": 126,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "214.39.90.130"
+  },
+  {
+    "id": 27,
+    "timestamp": "2024-01-15T07:58:00Z",
+    "method": "POST",
+    "endpoint": "/api/reviews",
+    "status_code": 500,
+    "response_time_ms": 2301,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "191.229.198.93"
+  },
+  {
+    "id": 62,
+    "timestamp": "2024-01-15T08:17:00Z",
+    "method": "PUT",
+    "endpoint": "/api/orders",
+    "status_code": 500,
+    "response_time_ms": 1715,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "18.198.248.34"
+  },
+  {
+    "id": 158,
+    "timestamp": "2024-01-15T08:52:00Z",
+    "method": "PUT",
+    "endpoint": "/api/auth/logout",
+    "status_code": 503,
+    "response_time_ms": 2976,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "82.226.172.181"
+  },
+  {
+    "id": 86,
+    "timestamp": "2024-01-15T09:10:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/auth/login",
+    "status_code": 201,
+    "response_time_ms": 204,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "ip_address": "100.28.7.154"
+  },
+  {
+    "id": 21,
+    "timestamp": "2024-01-15T09:12:00Z",
+    "method": "DELETE",
+    "endpoint": "/api/payments",
+    "status_code": 201,
+    "response_time_ms": 40,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "30.149.192.119"
+  },
+  {
+    "id": 107,
+    "timestamp": "2024-01-15T09:19:00Z",
+    "method": "PUT",
+    "endpoint": "/api/search",
+    "status_code": 502,
+    "response_time_ms": 1012,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "163.236.20.76"
+  },
+  {
+    "id": 24,
+    "timestamp": "2024-01-15T09:25:00Z",
+    "method": "POST",
+    "endpoint": "/api/search",
+    "status_code": 502,
+    "response_time_ms": 2426,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "209.21.153.62"
+  },
+  {
+    "id": 183,
+    "timestamp": "2024-01-15T09:29:00Z",
+    "method": "GET",
+    "endpoint": "/api/search",
+    "status_code": 201,
+    "response_time_ms": 300,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "156.232.125.102"
+  },
+  {
+    "id": 50,
+    "timestamp": "2024-01-15T09:43:00Z",
+    "method": "POST",
+    "endpoint": "/api/users",
+    "status_code": 201,
+    "response_time_ms": 78,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "220.191.120.213"
+  },
+  {
+    "id": 140,
+    "timestamp": "2024-01-15T09:48:00Z",
+    "method": "GET",
+    "endpoint": "/api/search",
+    "status_code": 404,
+    "response_time_ms": 101,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "129.71.157.126"
+  },
+  {
+    "id": 188,
+    "timestamp": "2024-01-15T10:15:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/search",
+    "status_code": 503,
+    "response_time_ms": 3660,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "247.170.153.238"
+  },
+  {
+    "id": 52,
+    "timestamp": "2024-01-15T10:53:00Z",
+    "method": "POST",
+    "endpoint": "/api/orders",
+    "status_code": 503,
+    "response_time_ms": 4381,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "36.120.25.103"
+  },
+  {
+    "id": 59,
+    "timestamp": "2024-01-15T11:04:00Z",
+    "method": "DELETE",
+    "endpoint": "/api/auth/logout",
+    "status_code": 503,
+    "response_time_ms": 1840,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "90.139.99.211"
+  },
+  {
+    "id": 193,
+    "timestamp": "2024-01-15T11:13:00Z",
+    "method": "POST",
+    "endpoint": "/api/inventory",
+    "status_code": 502,
+    "response_time_ms": 1396,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "251.128.13.227"
+  },
+  {
+    "id": 120,
+    "timestamp": "2024-01-15T11:24:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/orders",
+    "status_code": 403,
+    "response_time_ms": 104,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "ip_address": "115.159.145.32"
+  },
+  {
+    "id": 23,
+    "timestamp": "2024-01-15T11:28:00Z",
+    "method": "PUT",
+    "endpoint": "/api/auth/login",
+    "status_code": 500,
+    "response_time_ms": 3229,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "92.144.32.162"
+  },
+  {
+    "id": 171,
+    "timestamp": "2024-01-15T11:46:00Z",
+    "method": "POST",
+    "endpoint": "/api/auth/login",
+    "status_code": 200,
+    "response_time_ms": 246,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "85.83.101.47"
+  },
+  {
+    "id": 186,
+    "timestamp": "2024-01-15T11:50:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/search",
+    "status_code": 200,
+    "response_time_ms": 191,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "137.244.38.19"
+  },
+  {
+    "id": 75,
+    "timestamp": "2024-01-15T12:04:00Z",
+    "method": "POST",
+    "endpoint": "/api/cart",
+    "status_code": 404,
+    "response_time_ms": 145,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "162.69.215.5"
+  },
+  {
+    "id": 55,
+    "timestamp": "2024-01-15T12:15:00Z",
+    "method": "POST",
+    "endpoint": "/api/payments",
+    "status_code": 200,
+    "response_time_ms": 199,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "222.13.231.90"
+  },
+  {
+    "id": 168,
+    "timestamp": "2024-01-15T12:21:00Z",
+    "method": "POST",
+    "endpoint": "/api/auth/login",
+    "status_code": 403,
+    "response_time_ms": 100,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "ip_address": "247.18.116.236"
+  },
+  {
+    "id": 173,
+    "timestamp": "2024-01-15T12:24:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/inventory",
+    "status_code": 200,
+    "response_time_ms": 292,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "1.41.56.211"
+  },
+  {
+    "id": 90,
+    "timestamp": "2024-01-15T12:39:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/auth/logout",
+    "status_code": 201,
+    "response_time_ms": 144,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "202.193.214.103"
+  },
+  {
+    "id": 155,
+    "timestamp": "2024-01-15T12:55:00Z",
+    "method": "PUT",
+    "endpoint": "/api/users",
+    "status_code": 200,
+    "response_time_ms": 102,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "74.49.113.1"
+  },
+  {
+    "id": 48,
+    "timestamp": "2024-01-15T13:14:00Z",
+    "method": "POST",
+    "endpoint": "/api/reviews",
+    "status_code": 503,
+    "response_time_ms": 3660,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "135.12.132.115"
+  },
+  {
+    "id": 13,
+    "timestamp": "2024-01-15T13:15:00Z",
+    "method": "DELETE",
+    "endpoint": "/api/products",
+    "status_code": 401,
+    "response_time_ms": 96,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "197.212.193.191"
+  },
+  {
+    "id": 98,
+    "timestamp": "2024-01-15T13:18:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/inventory",
+    "status_code": 503,
+    "response_time_ms": 3970,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "235.212.17.232"
+  },
+  {
+    "id": 72,
+    "timestamp": "2024-01-15T13:24:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/payments",
+    "status_code": 200,
+    "response_time_ms": 227,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "ip_address": "125.185.186.152"
+  },
+  {
+    "id": 11,
+    "timestamp": "2024-01-15T13:46:00Z",
+    "method": "GET",
+    "endpoint": "/api/inventory",
+    "status_code": 503,
+    "response_time_ms": 1812,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "ip_address": "168.216.171.137"
+  },
+  {
+    "id": 103,
+    "timestamp": "2024-01-15T13:56:00Z",
+    "method": "GET",
+    "endpoint": "/api/products",
+    "status_code": 503,
+    "response_time_ms": 3306,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "103.181.74.102"
+  },
+  {
+    "id": 135,
+    "timestamp": "2024-01-15T13:59:00Z",
+    "method": "POST",
+    "endpoint": "/api/payments",
+    "status_code": 502,
+    "response_time_ms": 3215,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "240.47.202.239"
+  },
+  {
+    "id": 185,
+    "timestamp": "2024-01-15T13:59:00Z",
+    "method": "DELETE",
+    "endpoint": "/api/cart",
+    "status_code": 502,
+    "response_time_ms": 3209,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "157.202.46.128"
+  },
+  {
+    "id": 43,
+    "timestamp": "2024-01-15T14:01:00Z",
+    "method": "GET",
+    "endpoint": "/api/products",
+    "status_code": 403,
+    "response_time_ms": 69,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "108.43.19.195"
+  },
+  {
+    "id": 122,
+    "timestamp": "2024-01-15T14:11:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/search",
+    "status_code": 502,
+    "response_time_ms": 3683,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "201.202.207.83"
+  },
+  {
+    "id": 179,
+    "timestamp": "2024-01-15T14:35:00Z",
+    "method": "GET",
+    "endpoint": "/api/cart",
+    "status_code": 403,
+    "response_time_ms": 126,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "ip_address": "157.162.135.75"
+  },
+  {
+    "id": 119,
+    "timestamp": "2024-01-15T14:39:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/auth/logout",
+    "status_code": 403,
+    "response_time_ms": 190,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "137.240.157.233"
+  },
+  {
+    "id": 178,
+    "timestamp": "2024-01-15T14:45:00Z",
+    "method": "GET",
+    "endpoint": "/api/orders",
+    "status_code": 503,
+    "response_time_ms": 1595,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "201.44.16.37"
+  },
+  {
+    "id": 29,
+    "timestamp": "2024-01-15T14:48:00Z",
+    "method": "PUT",
+    "endpoint": "/api/orders",
+    "status_code": 404,
+    "response_time_ms": 72,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "94.116.165.23"
+  },
+  {
+    "id": 169,
+    "timestamp": "2024-01-15T14:54:00Z",
+    "method": "GET",
+    "endpoint": "/api/orders",
+    "status_code": 503,
+    "response_time_ms": 2700,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "ip_address": "19.133.214.218"
+  },
+  {
+    "id": 154,
+    "timestamp": "2024-01-15T15:20:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/cart",
+    "status_code": 401,
+    "response_time_ms": 86,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "215.18.189.92"
+  },
+  {
+    "id": 76,
+    "timestamp": "2024-01-15T15:21:00Z",
+    "method": "PUT",
+    "endpoint": "/api/auth/login",
+    "status_code": 200,
+    "response_time_ms": 30,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "19.228.159.66"
+  },
+  {
+    "id": 106,
+    "timestamp": "2024-01-15T15:23:00Z",
+    "method": "POST",
+    "endpoint": "/api/reviews",
+    "status_code": 200,
+    "response_time_ms": 40,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "196.93.80.121"
+  },
+  {
+    "id": 134,
+    "timestamp": "2024-01-15T15:23:00Z",
+    "method": "PUT",
+    "endpoint": "/api/auth/logout",
+    "status_code": 200,
+    "response_time_ms": 213,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "206.102.83.15"
+  },
+  {
+    "id": 138,
+    "timestamp": "2024-01-15T15:35:00Z",
+    "method": "GET",
+    "endpoint": "/api/cart",
+    "status_code": 403,
+    "response_time_ms": 142,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "33.217.8.60"
+  },
+  {
+    "id": 174,
+    "timestamp": "2024-01-15T15:38:00Z",
+    "method": "GET",
+    "endpoint": "/api/auth/logout",
+    "status_code": 403,
+    "response_time_ms": 154,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "223.152.139.128"
+  },
+  {
+    "id": 139,
+    "timestamp": "2024-01-15T15:39:00Z",
+    "method": "PUT",
+    "endpoint": "/api/cart",
+    "status_code": 200,
+    "response_time_ms": 156,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "45.90.24.68"
+  },
+  {
+    "id": 89,
+    "timestamp": "2024-01-15T15:41:00Z",
+    "method": "POST",
+    "endpoint": "/api/auth/login",
+    "status_code": 200,
+    "response_time_ms": 55,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "88.33.170.61"
+  },
+  {
+    "id": 152,
+    "timestamp": "2024-01-15T15:41:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/reviews",
+    "status_code": 401,
+    "response_time_ms": 73,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "ip_address": "242.25.245.240"
+  },
+  {
+    "id": 79,
+    "timestamp": "2024-01-15T15:56:00Z",
+    "method": "GET",
+    "endpoint": "/api/auth/logout",
+    "status_code": 204,
+    "response_time_ms": 262,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "181.147.240.145"
+  },
+  {
+    "id": 105,
+    "timestamp": "2024-01-15T16:00:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/payments",
+    "status_code": 200,
+    "response_time_ms": 279,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "ip_address": "244.97.135.204"
+  },
+  {
+    "id": 114,
+    "timestamp": "2024-01-15T16:20:00Z",
+    "method": "PUT",
+    "endpoint": "/api/reviews",
+    "status_code": 503,
+    "response_time_ms": 1440,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "205.76.36.177"
+  },
+  {
+    "id": 194,
+    "timestamp": "2024-01-15T16:20:00Z",
+    "method": "DELETE",
+    "endpoint": "/api/orders",
+    "status_code": 200,
+    "response_time_ms": 84,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "119.93.210.53"
+  },
+  {
+    "id": 22,
+    "timestamp": "2024-01-15T16:24:00Z",
+    "method": "PUT",
+    "endpoint": "/api/auth/login",
+    "status_code": 403,
+    "response_time_ms": 154,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "73.227.58.28"
+  },
+  {
+    "id": 65,
+    "timestamp": "2024-01-15T16:31:00Z",
+    "method": "GET",
+    "endpoint": "/api/products",
+    "status_code": 200,
+    "response_time_ms": 225,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "ip_address": "194.191.128.31"
+  },
+  {
+    "id": 91,
+    "timestamp": "2024-01-15T16:34:00Z",
+    "method": "DELETE",
+    "endpoint": "/api/cart",
+    "status_code": 201,
+    "response_time_ms": 239,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "ip_address": "233.231.229.72"
+  },
+  {
+    "id": 160,
+    "timestamp": "2024-01-15T16:37:00Z",
+    "method": "GET",
+    "endpoint": "/api/auth/login",
+    "status_code": 503,
+    "response_time_ms": 4222,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "31.94.136.118"
+  },
+  {
+    "id": 161,
+    "timestamp": "2024-01-15T16:38:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/payments",
+    "status_code": 400,
+    "response_time_ms": 77,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "73.222.177.221"
+  },
+  {
+    "id": 196,
+    "timestamp": "2024-01-15T16:39:00Z",
+    "method": "GET",
+    "endpoint": "/api/orders",
+    "status_code": 201,
+    "response_time_ms": 263,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "ip_address": "69.54.235.252"
+  },
+  {
+    "id": 37,
+    "timestamp": "2024-01-15T17:09:00Z",
+    "method": "GET",
+    "endpoint": "/api/products",
+    "status_code": 401,
+    "response_time_ms": 82,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "126.69.243.44"
+  },
+  {
+    "id": 164,
+    "timestamp": "2024-01-15T17:15:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/products",
+    "status_code": 200,
+    "response_time_ms": 284,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "234.3.150.119"
+  },
+  {
+    "id": 127,
+    "timestamp": "2024-01-15T17:24:00Z",
+    "method": "GET",
+    "endpoint": "/api/search",
+    "status_code": 400,
+    "response_time_ms": 111,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "208.31.187.50"
+  },
+  {
+    "id": 36,
+    "timestamp": "2024-01-15T17:30:00Z",
+    "method": "PUT",
+    "endpoint": "/api/inventory",
+    "status_code": 401,
+    "response_time_ms": 190,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "1.157.237.31"
+  },
+  {
+    "id": 165,
+    "timestamp": "2024-01-15T17:36:00Z",
+    "method": "POST",
+    "endpoint": "/api/search",
+    "status_code": 200,
+    "response_time_ms": 171,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "164.12.121.229"
+  },
+  {
+    "id": 16,
+    "timestamp": "2024-01-15T17:52:00Z",
+    "method": "GET",
+    "endpoint": "/api/products",
+    "status_code": 400,
+    "response_time_ms": 104,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "96.21.113.124"
+  },
+  {
+    "id": 177,
+    "timestamp": "2024-01-15T17:52:00Z",
+    "method": "PUT",
+    "endpoint": "/api/auth/login",
+    "status_code": 200,
+    "response_time_ms": 247,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "185.52.165.99"
+  },
+  {
+    "id": 64,
+    "timestamp": "2024-01-15T18:06:00Z",
+    "method": "DELETE",
+    "endpoint": "/api/payments",
+    "status_code": 403,
+    "response_time_ms": 96,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "137.255.109.200"
+  },
+  {
+    "id": 128,
+    "timestamp": "2024-01-15T18:17:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/payments",
+    "status_code": 403,
+    "response_time_ms": 68,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "ip_address": "47.117.139.127"
+  },
+  {
+    "id": 151,
+    "timestamp": "2024-01-15T18:21:00Z",
+    "method": "GET",
+    "endpoint": "/api/products",
+    "status_code": 201,
+    "response_time_ms": 73,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "221.5.108.8"
+  },
+  {
+    "id": 66,
+    "timestamp": "2024-01-15T18:25:00Z",
+    "method": "DELETE",
+    "endpoint": "/api/cart",
+    "status_code": 400,
+    "response_time_ms": 103,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "45.89.44.75"
+  },
+  {
+    "id": 108,
+    "timestamp": "2024-01-15T18:32:00Z",
+    "method": "PUT",
+    "endpoint": "/api/reviews",
+    "status_code": 403,
+    "response_time_ms": 131,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "246.108.180.194"
+  },
+  {
+    "id": 28,
+    "timestamp": "2024-01-15T18:39:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/reviews",
+    "status_code": 400,
+    "response_time_ms": 97,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "149.99.4.132"
+  },
+  {
+    "id": 146,
+    "timestamp": "2024-01-15T18:52:00Z",
+    "method": "POST",
+    "endpoint": "/api/auth/logout",
+    "status_code": 502,
+    "response_time_ms": 2127,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "236.247.220.245"
+  },
+  {
+    "id": 78,
+    "timestamp": "2024-01-15T18:58:00Z",
+    "method": "PUT",
+    "endpoint": "/api/inventory",
+    "status_code": 404,
+    "response_time_ms": 115,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "ip_address": "225.245.16.142"
+  },
+  {
+    "id": 3,
+    "timestamp": "2024-01-15T19:10:00Z",
+    "method": "GET",
+    "endpoint": "/api/inventory",
+    "status_code": 200,
+    "response_time_ms": 228,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "228.178.218.169"
+  },
+  {
+    "id": 149,
+    "timestamp": "2024-01-15T19:15:00Z",
+    "method": "DELETE",
+    "endpoint": "/api/orders",
+    "status_code": 500,
+    "response_time_ms": 2692,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "182.139.185.100"
+  },
+  {
+    "id": 200,
+    "timestamp": "2024-01-15T19:31:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/cart",
+    "status_code": 200,
+    "response_time_ms": 267,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "ip_address": "56.39.65.58"
+  },
+  {
+    "id": 39,
+    "timestamp": "2024-01-15T19:35:00Z",
+    "method": "PUT",
+    "endpoint": "/api/search",
+    "status_code": 503,
+    "response_time_ms": 3537,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "ip_address": "31.146.154.67"
+  },
+  {
+    "id": 125,
+    "timestamp": "2024-01-15T19:38:00Z",
+    "method": "PUT",
+    "endpoint": "/api/cart",
+    "status_code": 403,
+    "response_time_ms": 137,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "84.236.72.130"
+  },
+  {
+    "id": 121,
+    "timestamp": "2024-01-15T19:48:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/search",
+    "status_code": 404,
+    "response_time_ms": 156,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "ip_address": "90.221.153.10"
+  },
+  {
+    "id": 156,
+    "timestamp": "2024-01-15T19:55:00Z",
+    "method": "POST",
+    "endpoint": "/api/auth/login",
+    "status_code": 204,
+    "response_time_ms": 69,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "232.164.248.227"
+  },
+  {
+    "id": 170,
+    "timestamp": "2024-01-15T20:00:00Z",
+    "method": "POST",
+    "endpoint": "/api/reviews",
+    "status_code": 204,
+    "response_time_ms": 83,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "ip_address": "42.204.134.211"
+  },
+  {
+    "id": 166,
+    "timestamp": "2024-01-15T20:02:00Z",
+    "method": "PUT",
+    "endpoint": "/api/orders",
+    "status_code": 201,
+    "response_time_ms": 159,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "166.197.245.108"
+  },
+  {
+    "id": 131,
+    "timestamp": "2024-01-15T20:05:00Z",
+    "method": "POST",
+    "endpoint": "/api/payments",
+    "status_code": 502,
+    "response_time_ms": 1263,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "219.144.232.43"
+  },
+  {
+    "id": 141,
+    "timestamp": "2024-01-15T20:22:00Z",
+    "method": "DELETE",
+    "endpoint": "/api/cart",
+    "status_code": 200,
+    "response_time_ms": 140,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "2.32.54.79"
+  },
+  {
+    "id": 4,
+    "timestamp": "2024-01-15T20:27:00Z",
+    "method": "PUT",
+    "endpoint": "/api/orders",
+    "status_code": 500,
+    "response_time_ms": 4075,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "ip_address": "51.176.99.245"
+  },
+  {
+    "id": 101,
+    "timestamp": "2024-01-15T20:29:00Z",
+    "method": "POST",
+    "endpoint": "/api/search",
+    "status_code": 200,
+    "response_time_ms": 172,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "ip_address": "125.247.98.57"
+  },
+  {
+    "id": 35,
+    "timestamp": "2024-01-15T20:57:00Z",
+    "method": "POST",
+    "endpoint": "/api/products",
+    "status_code": 401,
+    "response_time_ms": 131,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "9.103.214.103"
+  },
+  {
+    "id": 130,
+    "timestamp": "2024-01-15T20:57:00Z",
+    "method": "POST",
+    "endpoint": "/api/cart",
+    "status_code": 200,
+    "response_time_ms": 300,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "222.230.197.162"
+  },
+  {
+    "id": 18,
+    "timestamp": "2024-01-15T20:58:00Z",
+    "method": "POST",
+    "endpoint": "/api/cart",
+    "status_code": 503,
+    "response_time_ms": 3436,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "197.37.192.36"
+  },
+  {
+    "id": 167,
+    "timestamp": "2024-01-15T21:01:00Z",
+    "method": "PUT",
+    "endpoint": "/api/orders",
+    "status_code": 200,
+    "response_time_ms": 47,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "88.218.198.241"
+  },
+  {
+    "id": 19,
+    "timestamp": "2024-01-15T21:05:00Z",
+    "method": "DELETE",
+    "endpoint": "/api/search",
+    "status_code": 503,
+    "response_time_ms": 2549,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "234.0.167.244"
+  },
+  {
+    "id": 104,
+    "timestamp": "2024-01-15T21:08:00Z",
+    "method": "POST",
+    "endpoint": "/api/cart",
+    "status_code": 200,
+    "response_time_ms": 189,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "220.77.219.102"
+  },
+  {
+    "id": 94,
+    "timestamp": "2024-01-15T21:17:00Z",
+    "method": "DELETE",
+    "endpoint": "/api/products",
+    "status_code": 200,
+    "response_time_ms": 131,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "80.246.144.129"
+  },
+  {
+    "id": 144,
+    "timestamp": "2024-01-15T21:20:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/search",
+    "status_code": 204,
+    "response_time_ms": 300,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "51.183.56.109"
+  },
+  {
+    "id": 47,
+    "timestamp": "2024-01-15T21:26:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/auth/login",
+    "status_code": 502,
+    "response_time_ms": 3489,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "36.198.178.10"
+  },
+  {
+    "id": 190,
+    "timestamp": "2024-01-15T21:29:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/cart",
+    "status_code": 400,
+    "response_time_ms": 133,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "234.247.96.204"
+  },
+  {
+    "id": 31,
+    "timestamp": "2024-01-15T21:30:00Z",
+    "method": "PUT",
+    "endpoint": "/api/search",
+    "status_code": 400,
+    "response_time_ms": 166,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "155.86.136.97"
+  },
+  {
+    "id": 45,
+    "timestamp": "2024-01-15T21:33:00Z",
+    "method": "PUT",
+    "endpoint": "/api/inventory",
+    "status_code": 200,
+    "response_time_ms": 205,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "76.47.0.47"
+  },
+  {
+    "id": 26,
+    "timestamp": "2024-01-15T21:35:00Z",
+    "method": "DELETE",
+    "endpoint": "/api/orders",
+    "status_code": 204,
+    "response_time_ms": 73,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "251.7.68.51"
+  },
+  {
+    "id": 46,
+    "timestamp": "2024-01-15T21:35:00Z",
+    "method": "POST",
+    "endpoint": "/api/payments",
+    "status_code": 201,
+    "response_time_ms": 247,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "64.124.236.155"
+  },
+  {
+    "id": 38,
+    "timestamp": "2024-01-15T21:39:00Z",
+    "method": "GET",
+    "endpoint": "/api/cart",
+    "status_code": 401,
+    "response_time_ms": 116,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "81.101.111.133"
+  },
+  {
+    "id": 191,
+    "timestamp": "2024-01-15T21:47:00Z",
+    "method": "POST",
+    "endpoint": "/api/reviews",
+    "status_code": 204,
+    "response_time_ms": 141,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "134.122.203.180"
+  },
+  {
+    "id": 6,
+    "timestamp": "2024-01-15T21:51:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/search",
+    "status_code": 204,
+    "response_time_ms": 64,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "16.153.78.46"
+  },
+  {
+    "id": 84,
+    "timestamp": "2024-01-15T21:53:00Z",
+    "method": "POST",
+    "endpoint": "/api/reviews",
+    "status_code": 401,
+    "response_time_ms": 136,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "42.238.137.101"
+  },
+  {
+    "id": 32,
+    "timestamp": "2024-01-15T21:55:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/search",
+    "status_code": 200,
+    "response_time_ms": 26,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "217.22.192.235"
+  },
+  {
+    "id": 95,
+    "timestamp": "2024-01-15T21:57:00Z",
+    "method": "DELETE",
+    "endpoint": "/api/auth/logout",
+    "status_code": 201,
+    "response_time_ms": 104,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "ip_address": "9.164.145.54"
+  },
+  {
+    "id": 53,
+    "timestamp": "2024-01-15T21:59:00Z",
+    "method": "DELETE",
+    "endpoint": "/api/orders",
+    "status_code": 204,
+    "response_time_ms": 208,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "132.144.173.202"
+  },
+  {
+    "id": 88,
+    "timestamp": "2024-01-15T22:06:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/cart",
+    "status_code": 400,
+    "response_time_ms": 185,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "202.39.176.141"
+  },
+  {
+    "id": 92,
+    "timestamp": "2024-01-15T22:13:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/reviews",
+    "status_code": 503,
+    "response_time_ms": 3378,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "131.185.104.230"
+  },
+  {
+    "id": 159,
+    "timestamp": "2024-01-15T22:19:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/search",
+    "status_code": 502,
+    "response_time_ms": 2679,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "92.74.14.181"
+  },
+  {
+    "id": 40,
+    "timestamp": "2024-01-15T22:24:00Z",
+    "method": "PUT",
+    "endpoint": "/api/orders",
+    "status_code": 403,
+    "response_time_ms": 167,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "189.233.217.139"
+  },
+  {
+    "id": 109,
+    "timestamp": "2024-01-15T22:25:00Z",
+    "method": "GET",
+    "endpoint": "/api/users",
+    "status_code": 503,
+    "response_time_ms": 2367,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "237.149.4.193"
+  },
+  {
+    "id": 197,
+    "timestamp": "2024-01-15T22:38:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/orders",
+    "status_code": 200,
+    "response_time_ms": 281,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "233.109.24.25"
+  },
+  {
+    "id": 142,
+    "timestamp": "2024-01-15T22:42:00Z",
+    "method": "GET",
+    "endpoint": "/api/orders",
+    "status_code": 204,
+    "response_time_ms": 36,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "60.179.78.235"
+  },
+  {
+    "id": 133,
+    "timestamp": "2024-01-15T22:46:00Z",
+    "method": "DELETE",
+    "endpoint": "/api/search",
+    "status_code": 502,
+    "response_time_ms": 2144,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "191.4.144.107"
+  },
+  {
+    "id": 73,
+    "timestamp": "2024-01-15T22:50:00Z",
+    "method": "POST",
+    "endpoint": "/api/reviews",
+    "status_code": 200,
+    "response_time_ms": 106,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "222.2.187.161"
+  },
+  {
+    "id": 136,
+    "timestamp": "2024-01-15T22:50:00Z",
+    "method": "GET",
+    "endpoint": "/api/orders",
+    "status_code": 201,
+    "response_time_ms": 31,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "ip_address": "90.161.9.123"
+  },
+  {
+    "id": 5,
+    "timestamp": "2024-01-15T23:02:00Z",
+    "method": "PUT",
+    "endpoint": "/api/auth/logout",
+    "status_code": 500,
+    "response_time_ms": 3929,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "196.241.119.219"
+  },
+  {
+    "id": 70,
+    "timestamp": "2024-01-15T23:13:00Z",
+    "method": "POST",
+    "endpoint": "/api/search",
+    "status_code": 200,
+    "response_time_ms": 35,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "73.5.130.128"
+  },
+  {
+    "id": 110,
+    "timestamp": "2024-01-15T23:15:00Z",
+    "method": "GET",
+    "endpoint": "/api/products",
+    "status_code": 500,
+    "response_time_ms": 2567,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "104.72.103.7"
+  },
+  {
+    "id": 162,
+    "timestamp": "2024-01-15T23:16:00Z",
+    "method": "POST",
+    "endpoint": "/api/auth/login",
+    "status_code": 200,
+    "response_time_ms": 219,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "153.238.20.207"
+  },
+  {
+    "id": 51,
+    "timestamp": "2024-01-15T23:26:00Z",
+    "method": "GET",
+    "endpoint": "/api/auth/login",
+    "status_code": 200,
+    "response_time_ms": 281,
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+    "ip_address": "91.133.102.47"
+  },
+  {
+    "id": 132,
+    "timestamp": "2024-01-15T23:39:00Z",
+    "method": "DELETE",
+    "endpoint": "/api/cart",
+    "status_code": 401,
+    "response_time_ms": 91,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "123.54.13.160"
+  },
+  {
+    "id": 42,
+    "timestamp": "2024-01-15T23:45:00Z",
+    "method": "DELETE",
+    "endpoint": "/api/payments",
+    "status_code": 401,
+    "response_time_ms": 166,
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
+    "ip_address": "192.212.51.171"
+  },
+  {
+    "id": 195,
+    "timestamp": "2024-01-15T23:50:00Z",
+    "method": "DELETE",
+    "endpoint": "/api/search",
+    "status_code": 200,
+    "response_time_ms": 130,
+    "user_agent": "curl/7.68.0",
+    "ip_address": "205.105.194.156"
+  },
+  {
+    "id": 176,
+    "timestamp": "2024-01-15T23:52:00Z",
+    "method": "PATCH",
+    "endpoint": "/api/payments",
+    "status_code": 502,
+    "response_time_ms": 3295,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "38.157.167.215"
+  },
+  {
+    "id": 60,
+    "timestamp": "2024-01-15T23:55:00Z",
+    "method": "POST",
+    "endpoint": "/api/payments",
+    "status_code": 404,
+    "response_time_ms": 154,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "2.82.21.14"
+  },
+  {
+    "id": 163,
+    "timestamp": "2024-01-15T23:58:00Z",
+    "method": "GET",
+    "endpoint": "/api/reviews",
+    "status_code": 404,
+    "response_time_ms": 155,
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X)",
+    "ip_address": "95.22.149.68"
+  },
+  {
+    "id": 184,
+    "timestamp": "2024-01-15T23:58:00Z",
+    "method": "POST",
+    "endpoint": "/api/reviews",
+    "status_code": 200,
+    "response_time_ms": 145,
+    "user_agent": "PostmanRuntime/7.28.0",
+    "ip_address": "57.193.177.212"
+  }
+]
