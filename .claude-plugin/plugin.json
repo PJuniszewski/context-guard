@@ -9,12 +9,5 @@
   "license": "MIT",
   "repository": "https://github.com/PJuniszewski/context-guard",
   "homepage": "https://github.com/PJuniszewski/context-guard#readme",
-  "keywords": ["claude", "tokens", "trimming", "hook", "guard", "epistemic", "safety", "forensics"],
-  "commands": [
-    {
-      "name": "contextguard",
-      "description": "Context Guard utilities - preview trimming, diff, forensics mode",
-      "source": "commands/contextguard.md"
-    }
-  ]
+  "keywords": ["claude", "tokens", "trimming", "hook", "guard", "epistemic", "safety", "forensics"]
 }
