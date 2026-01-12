@@ -1,8 +1,8 @@
 # context-guard
 
-**LLM Epistemic Safety Layer** - Context integrity enforcement with sampling-aware guardrails.
+**Context-Guard prevents LLMs from reasoning with unjustified certainty when input data is incomplete.**
 
-Prevents confident hallucinations on incomplete data by automatically detecting when trimming would compromise analytical accuracy.
+LLM Epistemic Safety Layer - context integrity enforcement with sampling-aware guardrails. Automatically detects when trimming would compromise analytical accuracy and blocks silent sampling.
 
 ## Features
 

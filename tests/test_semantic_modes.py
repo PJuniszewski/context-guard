@@ -275,6 +275,53 @@ class TestHookBehavior:
 
 
 # =============================================================================
+# SYSTEM TEST: Last Line of Defense
+# =============================================================================
+
+class TestForensicBlocksNotSamples:
+    """
+    System test: forensic detection MUST result in BLOCK, never silent sample.
+
+    This is the last line of defense - if heuristic fires, we BLOCK.
+    No sampling, no allowing, no silent degradation.
+    """
+
+    @pytest.fixture
+    def large_data(self):
+        return [{"id": i, "value": f"data-{i}"} for i in range(200)]
+
+    @pytest.mark.parametrize("forensic_prompt", [
+        "Why did request id=abc123 fail?",
+        "What happened to order ORD-99999?",
+        "Check transaction 550e8400-e29b-41d4-a716-446655440000",
+        "Why did this request timeout?",
+        "What went wrong with the deployment?",
+    ])
+    def test_forensic_heuristic_always_blocks(self, large_data, forensic_prompt):
+        """
+        INVARIANT: If forensic heuristic fires → exit code 2 (BLOCK).
+
+        This test ensures we never silently sample when forensic pattern detected.
+        """
+        from trimmer_hook import detect_forensic_tripwire
+
+        # Step 1: Verify heuristic detects this as forensic
+        is_forensic, hits = detect_forensic_tripwire(forensic_prompt)
+        assert is_forensic, f"Heuristic should detect forensic pattern in: {forensic_prompt}"
+
+        # Step 2: Verify hook BLOCKS (exit code 2), not samples or allows
+        result = run_hook_with_prompt(forensic_prompt, large_data)
+
+        assert result["exit_code"] == 2, (
+            f"CRITICAL: Forensic prompt should BLOCK (exit 2), got exit {result['exit_code']}.\n"
+            f"Prompt: {forensic_prompt}\n"
+            f"Detected: {hits}\n"
+            f"This means silent sampling occurred - epistemic safety violated!"
+        )
+        assert result["blocked"], "blocked flag should be True"
+
+
+# =============================================================================
 # UNIT TESTS: Behavior Matrix
 # =============================================================================
 
