@@ -366,6 +366,48 @@ class TestForensicPayloadSizeDecision:
             f"Got: exit_code={result['exit_code']}"
         )
 
+    def test_forensic_small_payload_adds_warning(self, small_data):
+        """
+        INVARIANT: Forensic question + small payload → ALLOW + WARNING.
+
+        The warning lowers epistemic confidence to prevent phantom ID hallucination.
+        """
+        prompt = "Why did request id=abc123 fail?"
+
+        # Verify it IS detected as forensic
+        from trimmer_hook import detect_forensic_tripwire
+        is_forensic, hits = detect_forensic_tripwire(prompt)
+        assert is_forensic, "Should detect forensic pattern"
+
+        # Run hook and check for warning
+        result = run_hook_with_prompt(prompt, small_data)
+        assert not result["blocked"], "Should ALLOW (small payload)"
+
+        # Check that additionalContext warning was added
+        # The hook outputs JSON with additionalContext when warning is added
+        if result["stdout"]:
+            import json
+            try:
+                output = json.loads(result["stdout"])
+                hook_output = output.get("hookSpecificOutput", {})
+                additional_context = hook_output.get("additionalContext", "")
+
+                assert "FORENSIC QUERY WARNING" in additional_context, (
+                    f"Should contain FORENSIC QUERY WARNING.\n"
+                    f"Got additionalContext: {additional_context[:200]}..."
+                )
+                assert "VERIFY" in additional_context, (
+                    "Warning should instruct to verify ID exists"
+                )
+            except json.JSONDecodeError:
+                pass  # No JSON output means simple allow() was called
+
+        # Also check stderr for info message
+        assert "Forensic pattern detected" in result["stderr"] or "epistemic warning" in result["stderr"], (
+            f"Should log forensic warning info.\n"
+            f"stderr: {result['stderr']}"
+        )
+
     def test_forensic_large_payload_blocks(self, large_data):
         """
         INVARIANT: Forensic question + large payload → BLOCK.

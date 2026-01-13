@@ -470,9 +470,31 @@ def run_hook(hook_input: dict[str, Any]) -> None:
     # Escape hatch: #trimmer:force
     force_mode = MARKER_FORCE in prompt
 
-    # Early exit for small prompts
+    # Early exit for small prompts - but check forensic patterns first
     if len(prompt) < config["min_chars"] and not force_mode:
-        debug_log(f"Small prompt ({len(prompt)} < {config['min_chars']}), allowing")
+        debug_log(f"Small prompt ({len(prompt)} < {config['min_chars']})")
+        # Check for forensic patterns even in small prompts
+        is_forensic_early, forensic_hits_early = detect_forensic_tripwire(prompt)
+        semantic_mode_early = detect_semantic_mode(prompt)
+        if is_forensic_early and semantic_mode_early == TrimMode.ANALYSIS:
+            has_explicit_allow = (
+                MARKER_MODE_ANALYSIS in prompt or
+                MARKER_FORCE in prompt
+            )
+            if not has_explicit_allow:
+                # Small prompt with forensic pattern - add epistemic warning
+                hits_display = ", ".join(f'"{hit}"' for hit in forensic_hits_early[:3])
+                warning_context = (
+                    "FORENSIC QUERY WARNING:\n"
+                    f"- Detected identifier patterns: {hits_display}\n"
+                    "- The dataset is complete (no sampling occurred)\n"
+                    "- However, the referenced ID may not exist in the data\n"
+                    "- If the identifier is not present, any explanation would be speculative\n"
+                    "- VERIFY the ID exists before drawing conclusions"
+                )
+                info = "[trimmer] Forensic pattern detected in small payload, adding epistemic warning"
+                add_context(warning_context, info)
+        debug_log("Allowing small prompt")
         allow()
 
     # Count tokens
@@ -537,8 +559,29 @@ def run_hook(hook_input: dict[str, Any]) -> None:
             )
 
     # If under threshold, allow (even if forensic - no data loss risk)
+    # But add epistemic warning if forensic pattern detected
     if tokens <= threshold:
-        debug_log(f"Under threshold ({tokens} <= {threshold}), allowing")
+        debug_log(f"Under threshold ({tokens} <= {threshold})")
+        # Check if we should add forensic warning for small payloads
+        if is_forensic and semantic_mode == TrimMode.ANALYSIS:
+            has_explicit_allow = (
+                MARKER_MODE_ANALYSIS in prompt or
+                MARKER_FORCE in prompt
+            )
+            if not has_explicit_allow:
+                # FORENSIC + SMALL PAYLOAD: Allow with epistemic warning
+                # No data loss risk, but warn about phantom ID hallucination
+                hits_display = ", ".join(f'"{hit}"' for hit in forensic_hits[:3])
+                warning_context = (
+                    "FORENSIC QUERY WARNING:\n"
+                    f"- Detected identifier patterns: {hits_display}\n"
+                    "- The dataset is complete (no sampling occurred)\n"
+                    "- However, the referenced ID may not exist in the data\n"
+                    "- If the identifier is not present, any explanation would be speculative\n"
+                    "- VERIFY the ID exists before drawing conclusions"
+                )
+                info = f"[trimmer] Forensic pattern detected in small payload, adding epistemic warning"
+                add_context(warning_context, info)
         allow()
 
     # FORENSICS MODE: No sampling allowed - block if over threshold
