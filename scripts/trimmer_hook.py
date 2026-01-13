@@ -445,8 +445,15 @@ def run_hook(hook_input: dict[str, Any]) -> None:
         debug_log("Mode is off, allowing")
         allow()
 
-    # Extract prompt
-    prompt = hook_input.get("prompt", "")
+    # Extract prompt from Claude Code's format: {"prompts": [{"content": "..."}]}
+    prompts = hook_input.get("prompts", [])
+    if prompts:
+        # Concatenate all prompt contents
+        prompt = "\n".join(p.get("content", "") for p in prompts if p.get("content"))
+    else:
+        # Fallback for legacy format
+        prompt = hook_input.get("prompt", "")
+
     if not prompt:
         debug_log("No prompt, allowing")
         allow()
