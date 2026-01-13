@@ -386,25 +386,91 @@ class TestForensicPayloadSizeDecision:
         # Check that additionalContext warning was added
         # The hook outputs JSON with additionalContext when warning is added
         if result["stdout"]:
-            import json
             try:
                 output = json.loads(result["stdout"])
                 hook_output = output.get("hookSpecificOutput", {})
                 additional_context = hook_output.get("additionalContext", "")
 
-                assert "FORENSIC QUERY WARNING" in additional_context, (
-                    f"Should contain FORENSIC QUERY WARNING.\n"
-                    f"Got additionalContext: {additional_context[:200]}..."
+                # Accept either warning type (FORENSIC QUERY or PHANTOM ENTITY)
+                # PHANTOM ENTITY is shown when ID doesn't exist in data
+                # FORENSIC QUERY is shown when ID exists but we warn about verification
+                has_warning = (
+                    "FORENSIC QUERY WARNING" in additional_context or
+                    "PHANTOM ENTITY WARNING" in additional_context
                 )
-                assert "VERIFY" in additional_context, (
-                    "Warning should instruct to verify ID exists"
+                assert has_warning, (
+                    f"Should contain FORENSIC QUERY WARNING or PHANTOM ENTITY WARNING.\n"
+                    f"Got additionalContext: {additional_context[:200]}..."
                 )
             except json.JSONDecodeError:
                 pass  # No JSON output means simple allow() was called
 
-        # Also check stderr for info message
-        assert "Forensic pattern detected" in result["stderr"] or "epistemic warning" in result["stderr"], (
-            f"Should log forensic warning info.\n"
+        # Also check stderr for info message (accepts either forensic or phantom entity)
+        has_log = (
+            "Forensic pattern detected" in result["stderr"] or
+            "epistemic warning" in result["stderr"] or
+            "PHANTOM ENTITY" in result["stderr"]
+        )
+        assert has_log, (
+            f"Should log forensic warning or phantom entity info.\n"
+            f"stderr: {result['stderr']}"
+        )
+
+    def test_phantom_entity_detection(self, small_data):
+        """
+        INVARIANT: Forensic question about NON-EXISTENT ID → PHANTOM ENTITY WARNING.
+
+        This tests the key defense against phantom entity injection attacks:
+        - User asks about UUID that doesn't exist in data
+        - Hook detects that the identifier is NOT in the payload
+        - Returns strong warning about hallucination risk
+        """
+        # Use a UUID that doesn't exist in small_data
+        phantom_uuid = "9f3a2c7e-4b51-4c6f-8e32-1d9a8f1b1234"
+        prompt = f"Why did passenger id={phantom_uuid} not survive?"
+
+        # Verify it IS detected as forensic
+        from trimmer_hook import detect_forensic_tripwire, extract_identifier_values, check_identifiers_in_payload
+        is_forensic, hits = detect_forensic_tripwire(prompt)
+        assert is_forensic, "Should detect forensic pattern (UUID)"
+
+        # Verify our identifier extraction works
+        identifiers = extract_identifier_values(hits)
+        assert phantom_uuid in identifiers, f"Should extract UUID from hits. Got: {identifiers}"
+
+        # Verify the UUID is NOT in the data (need to convert to string for search)
+        data_string = json.dumps(small_data)
+        full_prompt = prompt + " " + data_string
+        found, missing = check_identifiers_in_payload([phantom_uuid], full_prompt)
+        assert phantom_uuid in missing, "UUID should be detected as missing from payload"
+
+        # Run hook and check for PHANTOM ENTITY WARNING
+        result = run_hook_with_prompt(prompt, small_data)
+        assert not result["blocked"], "Should ALLOW (small payload)"
+
+        # Check that PHANTOM ENTITY WARNING was added
+        if result["stdout"]:
+            try:
+                output = json.loads(result["stdout"])
+                hook_output = output.get("hookSpecificOutput", {})
+                additional_context = hook_output.get("additionalContext", "")
+
+                assert "PHANTOM ENTITY WARNING" in additional_context, (
+                    f"Should contain PHANTOM ENTITY WARNING.\n"
+                    f"Got additionalContext: {additional_context[:300]}..."
+                )
+                assert "DO NOT EXIST" in additional_context, (
+                    "Warning should explicitly say identifiers DO NOT EXIST"
+                )
+                assert "HALLUCINATION" in additional_context, (
+                    "Warning should mention hallucination risk"
+                )
+            except json.JSONDecodeError:
+                pytest.fail("Expected JSON output with phantom entity warning")
+
+        # Check stderr for phantom entity info
+        assert "PHANTOM ENTITY" in result["stderr"], (
+            f"Should log phantom entity detection.\n"
             f"stderr: {result['stderr']}"
         )
 

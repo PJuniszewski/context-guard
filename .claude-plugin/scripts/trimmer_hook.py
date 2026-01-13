@@ -58,9 +58,12 @@ MARKER_MODE_FORENSICS = "#trimmer:mode=forensics"
 
 # Forensic tripwire patterns (conservative fail-safe heuristic)
 # NOTE:
-# This is a conservative tripwire for obvious forensic-style queries.
-# It is NOT a full intent detection system.
-# False negatives are acceptable. Silent sampling is not.
+# Forensic intent is evaluated regardless of prompt size.
+# Blocking occurs only when BOTH conditions are met:
+#   1. Forensic pattern detected (specific record lookup)
+#   2. Prompt size exceeds threshold (data loss is possible)
+# This prevents silent sampling from hiding the answer user is looking for.
+# False negatives are acceptable. Silent data loss is not.
 FORENSIC_PATTERNS = [
     # Explicit ID lookups
     r"request\s+id[=:]\s*\S+",                     # "request id=abc123"
@@ -105,7 +108,8 @@ def detect_forensic_tripwire(prompt: str) -> tuple[bool, list[str]]:
     Detect if prompt contains forensic-style queries (asks about specific records).
 
     This is a conservative tripwire, NOT a full intent detection system.
-    False negatives are acceptable - silent sampling is not.
+    Detection is evaluated regardless of prompt size, but blocking decision
+    depends on BOTH forensic intent AND prompt size exceeding threshold.
 
     Returns:
         Tuple of (is_forensic, list_of_matched_patterns)
@@ -116,6 +120,84 @@ def detect_forensic_tripwire(prompt: str) -> tuple[bool, list[str]]:
         if match:
             hits.append(match.group(0))
     return bool(hits), hits
+
+
+# Patterns to extract identifier VALUES from forensic hits
+# Note: These are applied with case-SENSITIVE matching to avoid false positives
+IDENTIFIER_EXTRACTORS = [
+    # UUID pattern - extract full UUID (case-insensitive OK)
+    (r"\b([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})\b", True),
+    # id=value, id:value patterns - extract the value (case-insensitive for "id")
+    (r"id[=:]\s*['\"]?([a-zA-Z0-9_-]{3,})['\"]?", True),
+    # Hex strings (potential IDs) - at least 8 chars (case-insensitive OK)
+    (r"\b([a-f0-9]{8,})\b", True),
+    # Alphanumeric IDs with common prefixes - MUST be uppercase (case-sensitive!)
+    # This avoids matching words like "request" where REQ matches the prefix
+    (r"\b((?:TX|ORD|REQ|USR|ID)[_-][A-Z0-9]{4,})\b", False),
+]
+
+
+def extract_identifier_values(forensic_hits: list[str]) -> list[str]:
+    """
+    Extract actual identifier values from forensic pattern matches.
+
+    For example:
+    - "id=9f3a2c7e-4b51-4c6f-8e32-1d9a8f1b1234" → ["9f3a2c7e-4b51-4c6f-8e32-1d9a8f1b1234"]
+    - "request id=abc123" → ["abc123"]
+    - "order ORD-99999" → ["ORD-99999"]
+
+    Returns:
+        List of extracted identifier values
+    """
+    identifiers = []
+    for hit in forensic_hits:
+        for pattern, case_insensitive in IDENTIFIER_EXTRACTORS:
+            flags = re.IGNORECASE if case_insensitive else 0
+            matches = re.findall(pattern, hit, flags)
+            identifiers.extend(matches)
+    # Deduplicate while preserving order
+    seen = set()
+    unique = []
+    for id_val in identifiers:
+        if id_val.lower() not in seen:
+            seen.add(id_val.lower())
+            unique.append(id_val)
+    return unique
+
+
+def check_identifiers_in_payload(identifiers: list[str], payload: str) -> tuple[list[str], list[str]]:
+    """
+    Check which identifiers actually exist in the DATA portion of the payload.
+
+    This is the key defense against phantom entity injection attacks.
+    If an identifier is NOT found in the payload DATA, the model may hallucinate.
+
+    The check looks for identifiers in JSON data portions, not in the question text.
+    If an ID appears only once (in the question), it's considered missing from data.
+    If an ID appears multiple times (question + data), it's considered found.
+
+    Args:
+        identifiers: List of identifier values to check
+        payload: The full prompt/payload to search
+
+    Returns:
+        Tuple of (found_identifiers, missing_identifiers)
+    """
+    # Extract JSON portion from the prompt and convert back to string for searching
+    json_data, method = extract_json_from_prompt(payload)
+    data_str = json.dumps(json_data) if json_data is not None else ""
+
+    found = []
+    missing = []
+    for id_val in identifiers:
+        # Case-insensitive search for the identifier in the DATA portion
+        pattern = re.escape(id_val)
+        if data_str and re.search(pattern, data_str, re.IGNORECASE):
+            found.append(id_val)
+        else:
+            # ID is NOT in the data - this is a phantom entity
+            missing.append(id_val)
+    return found, missing
 
 
 def debug_log(msg: str) -> None:
@@ -478,17 +560,34 @@ def run_hook(hook_input: dict[str, Any]) -> None:
                 MARKER_FORCE in prompt
             )
             if not has_explicit_allow:
-                # Small prompt with forensic pattern - add epistemic warning
+                # Extract identifier values and check if they exist in payload
+                identifier_values = extract_identifier_values(forensic_hits_early)
+                found_ids, missing_ids = check_identifiers_in_payload(identifier_values, prompt)
+
                 hits_display = ", ".join(f'"{hit}"' for hit in forensic_hits_early[:3])
-                warning_context = (
-                    "FORENSIC QUERY WARNING:\n"
-                    f"- Detected identifier patterns: {hits_display}\n"
-                    "- The dataset is complete (no sampling occurred)\n"
-                    "- However, the referenced ID may not exist in the data\n"
-                    "- If the identifier is not present, any explanation would be speculative\n"
-                    "- VERIFY the ID exists before drawing conclusions"
-                )
-                info = "[trimmer] Forensic pattern detected in small payload, adding epistemic warning"
+
+                if missing_ids:
+                    # PHANTOM ENTITY DETECTED - ID not in payload!
+                    missing_display = ", ".join(f'"{id_val}"' for id_val in missing_ids[:3])
+                    warning_context = (
+                        "⚠️ PHANTOM ENTITY WARNING:\n"
+                        f"- You are asking about identifier(s): {missing_display}\n"
+                        f"- These identifiers DO NOT EXIST in the provided data\n"
+                        f"- The dataset is complete (no sampling occurred)\n"
+                        f"- Any explanation for non-existent entities would be HALLUCINATION\n"
+                        f"- If the entity doesn't exist, you MUST say 'This ID does not exist in the data'\n"
+                        f"- DO NOT fabricate explanations for phantom entities"
+                    )
+                    info = "[trimmer] PHANTOM ENTITY: Identifier not found in payload"
+                else:
+                    # ID exists - mild warning
+                    warning_context = (
+                        "FORENSIC QUERY WARNING:\n"
+                        f"- Detected identifier patterns: {hits_display}\n"
+                        "- The dataset is complete (no sampling occurred)\n"
+                        "- Verify the ID exists before drawing conclusions"
+                    )
+                    info = "[trimmer] Forensic pattern detected in small payload"
                 add_context(warning_context, info)
         debug_log("Allowing small prompt")
         allow()
@@ -517,48 +616,25 @@ def run_hook(hook_input: dict[str, Any]) -> None:
         threshold = config["warn_limit"]
 
     # ==========================================================================
-    # SEMANTIC MODE DETECTION (must happen BEFORE threshold check)
+    # SEMANTIC MODE DETECTION
+    # NOTE: Forensic intent is evaluated regardless of prompt size.
+    # Blocking occurs only when prompt size makes silent data loss possible.
+    # Principle: Semantics first, then size. But decision depends on BOTH.
     # ==========================================================================
 
-    # Detect semantic mode from markers
+    # Step 1: Detect semantic mode from markers
     semantic_mode = detect_semantic_mode(prompt)
     debug_log(f"Semantic mode: {semantic_mode.value}")
 
-    # Check for forensic tripwire (fail-safe heuristic)
+    # Step 2: Check for forensic tripwire (fail-safe heuristic)
     is_forensic, forensic_hits = detect_forensic_tripwire(prompt)
+    debug_log(f"Forensic check: is_forensic={is_forensic}, hits={forensic_hits}")
 
-    # Check if under threshold
-    if tokens <= threshold:
-        # Small payload - but check for forensic patterns first
-        if is_forensic and semantic_mode == TrimMode.ANALYSIS:
-            has_explicit_allow = (
-                MARKER_MODE_ANALYSIS in prompt or
-                MARKER_FORCE in prompt
-            )
-            if not has_explicit_allow:
-                # FORENSIC + SMALL PAYLOAD: Allow with epistemic warning
-                # No data loss risk, but warn about phantom ID hallucination
-                hits_display = ", ".join(f'"{hit}"' for hit in forensic_hits[:3])
-                warning_context = (
-                    "FORENSIC QUERY WARNING:\n"
-                    f"- Detected identifier patterns: {hits_display}\n"
-                    "- The dataset is complete (no sampling occurred)\n"
-                    "- However, the referenced ID may not exist in the data\n"
-                    "- If the identifier is not present, any explanation would be speculative\n"
-                    "- VERIFY the ID exists before drawing conclusions"
-                )
-                info = f"[trimmer] Forensic pattern detected in small payload, adding epistemic warning"
-                add_context(warning_context, info)
-        # No forensic patterns or explicit allow - just allow
-        allow()
-
-    # ==========================================================================
-    # LARGE PAYLOAD: Check forensic patterns
-    # ==========================================================================
-
-    if is_forensic and semantic_mode == TrimMode.ANALYSIS:
-        # Forensic signals detected but no explicit mode set
-        # FAIL-SAFE: Block unless explicitly allowed
+    # Step 3: Decision based on BOTH intent and size
+    # - forensic + small payload → ALLOW (no data loss risk)
+    # - forensic + large payload → BLOCK (potential data loss)
+    if is_forensic and tokens > threshold and semantic_mode == TrimMode.ANALYSIS:
+        # Forensic query with potential data loss - BLOCK
         has_explicit_allow = (
             MARKER_MODE_ANALYSIS in prompt or
             MARKER_FORCE in prompt
@@ -568,14 +644,56 @@ def run_hook(hook_input: dict[str, Any]) -> None:
             block(
                 f"FORENSIC SIGNALS DETECTED\n"
                 f"Detected patterns:\n{hits_display}\n\n"
-                f"This question appears to ask about specific records.\n"
-                f"Sampling would hide data - the answer may be lost.\n\n"
+                f"Prompt size ({tokens} tokens) exceeds limit ({threshold}).\n"
+                f"Sampling would hide data - your answer may be in trimmed records.\n\n"
                 f"Options:\n"
                 f"  - Add #trimmer:mode=forensics (block if payload too large)\n"
                 f"  - Add #trimmer:mode=analysis (explicitly allow sampling)\n"
                 f"  - Add #trimmer:force (bypass all checks)\n"
                 f"  - Reduce payload size manually"
             )
+
+    # If under threshold, allow (even if forensic - no data loss risk)
+    # But add epistemic warning if forensic pattern detected
+    if tokens <= threshold:
+        debug_log(f"Under threshold ({tokens} <= {threshold})")
+        # Check if we should add forensic warning for small payloads
+        if is_forensic and semantic_mode == TrimMode.ANALYSIS:
+            has_explicit_allow = (
+                MARKER_MODE_ANALYSIS in prompt or
+                MARKER_FORCE in prompt
+            )
+            if not has_explicit_allow:
+                # Extract identifier values and check if they exist in payload
+                identifier_values = extract_identifier_values(forensic_hits)
+                found_ids, missing_ids = check_identifiers_in_payload(identifier_values, prompt)
+
+                hits_display = ", ".join(f'"{hit}"' for hit in forensic_hits[:3])
+
+                if missing_ids:
+                    # PHANTOM ENTITY DETECTED - ID not in payload!
+                    missing_display = ", ".join(f'"{id_val}"' for id_val in missing_ids[:3])
+                    warning_context = (
+                        "⚠️ PHANTOM ENTITY WARNING:\n"
+                        f"- You are asking about identifier(s): {missing_display}\n"
+                        f"- These identifiers DO NOT EXIST in the provided data\n"
+                        f"- The dataset is complete (no sampling occurred)\n"
+                        f"- Any explanation for non-existent entities would be HALLUCINATION\n"
+                        f"- If the entity doesn't exist, you MUST say 'This ID does not exist in the data'\n"
+                        f"- DO NOT fabricate explanations for phantom entities"
+                    )
+                    info = "[trimmer] PHANTOM ENTITY: Identifier not found in payload"
+                else:
+                    # ID exists - mild warning
+                    warning_context = (
+                        "FORENSIC QUERY WARNING:\n"
+                        f"- Detected identifier patterns: {hits_display}\n"
+                        "- The dataset is complete (no sampling occurred)\n"
+                        "- Verify the ID exists before drawing conclusions"
+                    )
+                    info = "[trimmer] Forensic pattern detected in small payload"
+                add_context(warning_context, info)
+        allow()
 
     # FORENSICS MODE: No sampling allowed - block if over threshold
     if semantic_mode == TrimMode.FORENSICS:
