@@ -68,16 +68,22 @@ Add markers to your prompt to explicitly set the mode:
 
 ### Forensic Question Detection
 
-Context Guard automatically detects forensic questions and blocks sampling:
+Context Guard automatically detects forensic questions and blocks sampling **only when data loss is possible**:
+
+| Forensic Pattern | Payload Size | Result |
+|------------------|--------------|--------|
+| Detected | Small (≤ limit) | **ALLOW** - no data loss risk |
+| Detected | Large (> limit) | **BLOCK** - sampling would hide answer |
+| Not detected | Any size | Normal processing |
 
 ```
-# These patterns trigger forensic blocking:
+# These patterns trigger forensic detection:
 "Why did request id=abc123 fail?"
 "What happened to user id: xyz789?"
 "Show details for transaction TX-12345"
 ```
 
-To override: add `#trimmer:mode=analysis` or `#trimmer:force`
+To override blocking: add `#trimmer:mode=analysis` or `#trimmer:force`
 
 ## Usage
 
@@ -131,12 +137,13 @@ Trimmed files are saved to `.claude/trimmer/`:
 1. Hook intercepts `UserPromptSubmit` event
 2. If prompt > `MIN_CHARS`, count tokens via Anthropic API
 3. Detect semantic mode from markers or infer from question
-4. If forensic question detected without explicit mode → BLOCK
-5. If tokens > `LIMIT`:
+4. **Forensic + size check** (semantics first, then size):
+   - If forensic pattern detected AND tokens > `LIMIT` → BLOCK
+   - If tokens ≤ `LIMIT` → ALLOW (even if forensic - no data loss risk)
+5. If tokens > `LIMIT` and not forensic:
    - Extract JSON from prompt (if present)
    - Apply first-last-even sampling strategy
    - Include trim report in additionalContext
-   - Block with exit code 2
 6. Otherwise, allow prompt
 
 ### Layer 2: Command

@@ -58,9 +58,12 @@ MARKER_MODE_FORENSICS = "#trimmer:mode=forensics"
 
 # Forensic tripwire patterns (conservative fail-safe heuristic)
 # NOTE:
-# This is a conservative tripwire for obvious forensic-style queries.
-# It is NOT a full intent detection system.
-# False negatives are acceptable. Silent sampling is not.
+# Forensic intent is evaluated regardless of prompt size.
+# Blocking occurs only when BOTH conditions are met:
+#   1. Forensic pattern detected (specific record lookup)
+#   2. Prompt size exceeds threshold (data loss is possible)
+# This prevents silent sampling from hiding the answer user is looking for.
+# False negatives are acceptable. Silent data loss is not.
 FORENSIC_PATTERNS = [
     # Explicit ID lookups
     r"request\s+id[=:]\s*\S+",                     # "request id=abc123"
@@ -105,7 +108,8 @@ def detect_forensic_tripwire(prompt: str) -> tuple[bool, list[str]]:
     Detect if prompt contains forensic-style queries (asks about specific records).
 
     This is a conservative tripwire, NOT a full intent detection system.
-    False negatives are acceptable - silent sampling is not.
+    Detection is evaluated regardless of prompt size, but blocking decision
+    depends on BOTH forensic intent AND prompt size exceeding threshold.
 
     Returns:
         Tuple of (is_forensic, list_of_matched_patterns)
@@ -494,24 +498,26 @@ def run_hook(hook_input: dict[str, Any]) -> None:
     if mode == "warn":
         threshold = config["warn_limit"]
 
-    # Check if under threshold
-    if tokens <= threshold:
-        allow()
-
     # ==========================================================================
     # SEMANTIC MODE DETECTION
+    # NOTE: Forensic intent is evaluated regardless of prompt size.
+    # Blocking occurs only when prompt size makes silent data loss possible.
+    # Principle: Semantics first, then size. But decision depends on BOTH.
     # ==========================================================================
 
-    # Detect semantic mode from markers
+    # Step 1: Detect semantic mode from markers
     semantic_mode = detect_semantic_mode(prompt)
     debug_log(f"Semantic mode: {semantic_mode.value}")
 
-    # Check for forensic tripwire (fail-safe heuristic)
+    # Step 2: Check for forensic tripwire (fail-safe heuristic)
     is_forensic, forensic_hits = detect_forensic_tripwire(prompt)
+    debug_log(f"Forensic check: is_forensic={is_forensic}, hits={forensic_hits}")
 
-    if is_forensic and semantic_mode == TrimMode.ANALYSIS:
-        # Forensic signals detected but no explicit mode set
-        # FAIL-SAFE: Block unless explicitly allowed
+    # Step 3: Decision based on BOTH intent and size
+    # - forensic + small payload → ALLOW (no data loss risk)
+    # - forensic + large payload → BLOCK (potential data loss)
+    if is_forensic and tokens > threshold and semantic_mode == TrimMode.ANALYSIS:
+        # Forensic query with potential data loss - BLOCK
         has_explicit_allow = (
             MARKER_MODE_ANALYSIS in prompt or
             MARKER_FORCE in prompt
@@ -521,14 +527,19 @@ def run_hook(hook_input: dict[str, Any]) -> None:
             block(
                 f"FORENSIC SIGNALS DETECTED\n"
                 f"Detected patterns:\n{hits_display}\n\n"
-                f"This question appears to ask about specific records.\n"
-                f"Sampling may hide the answer you're looking for.\n\n"
+                f"Prompt size ({tokens} tokens) exceeds limit ({threshold}).\n"
+                f"Sampling would hide data - your answer may be in trimmed records.\n\n"
                 f"Options:\n"
                 f"  - Add #trimmer:mode=forensics (block if payload too large)\n"
                 f"  - Add #trimmer:mode=analysis (explicitly allow sampling)\n"
                 f"  - Add #trimmer:force (bypass all checks)\n"
                 f"  - Reduce payload size manually"
             )
+
+    # If under threshold, allow (even if forensic - no data loss risk)
+    if tokens <= threshold:
+        debug_log(f"Under threshold ({tokens} <= {threshold}), allowing")
+        allow()
 
     # FORENSICS MODE: No sampling allowed - block if over threshold
     if semantic_mode == TrimMode.FORENSICS:

@@ -240,7 +240,7 @@ class TestHookBehavior:
 
         assert result["blocked"], "Forensic question should block by default"
         assert "FORENSIC SIGNALS DETECTED" in result["stderr"]
-        assert "Sampling may hide" in result["stderr"]
+        assert "Sampling would hide data" in result["stderr"]
 
     def test_forensic_question_with_explicit_analysis_allows(self, large_data):
         """Forensic question WITH explicit #trimmer:mode=analysis should allow sampling."""
@@ -319,6 +319,112 @@ class TestForensicBlocksNotSamples:
             f"This means silent sampling occurred - epistemic safety violated!"
         )
         assert result["blocked"], "blocked flag should be True"
+
+
+# =============================================================================
+# UNIT TESTS: Forensic + Payload Size Decision
+# =============================================================================
+
+class TestForensicPayloadSizeDecision:
+    """
+    Test the core invariant: blocking depends on BOTH forensic intent AND payload size.
+
+    Principle: Semantics first, then size. But decision depends on BOTH.
+    - forensic + small payload → ALLOW (no data loss risk)
+    - forensic + large payload → BLOCK (potential data loss)
+    """
+
+    @pytest.fixture
+    def small_data(self):
+        """Small dataset that stays under token limit."""
+        return [{"id": i, "name": f"Item {i}"} for i in range(5)]
+
+    @pytest.fixture
+    def large_data(self):
+        """Large dataset that exceeds token limit."""
+        return [{"id": i, "name": f"Item {i}", "value": i * 100} for i in range(200)]
+
+    def test_forensic_small_payload_allows(self, small_data):
+        """
+        INVARIANT: Forensic question + small payload → ALLOW.
+
+        No data loss is possible, so forensic detection should NOT block.
+        """
+        prompt = "Why did request id=abc123 fail?"
+
+        # Verify it IS detected as forensic
+        from trimmer_hook import detect_forensic_tripwire
+        is_forensic, hits = detect_forensic_tripwire(prompt)
+        assert is_forensic, "Should detect forensic pattern"
+        assert len(hits) > 0, f"Should have hits: {hits}"
+
+        # But small payload should ALLOW
+        result = run_hook_with_prompt(prompt, small_data)
+        assert not result["blocked"], (
+            f"Forensic + small payload should ALLOW (no data loss risk).\n"
+            f"Forensic detected: {hits}\n"
+            f"Got: exit_code={result['exit_code']}"
+        )
+
+    def test_forensic_large_payload_blocks(self, large_data):
+        """
+        INVARIANT: Forensic question + large payload → BLOCK.
+
+        Data loss IS possible, so forensic detection should block to prevent
+        silent sampling from hiding the answer.
+        """
+        prompt = "Why did request id=abc123 fail?"
+
+        # Verify it IS detected as forensic
+        from trimmer_hook import detect_forensic_tripwire
+        is_forensic, hits = detect_forensic_tripwire(prompt)
+        assert is_forensic, "Should detect forensic pattern"
+
+        # Large payload should BLOCK
+        result = run_hook_with_prompt(prompt, large_data)
+        assert result["blocked"], (
+            f"Forensic + large payload should BLOCK (data loss risk).\n"
+            f"Forensic detected: {hits}\n"
+            f"Got: exit_code={result['exit_code']}"
+        )
+        assert "FORENSIC SIGNALS DETECTED" in result["stderr"]
+
+    def test_uuid_small_payload_allows(self, small_data):
+        """UUID pattern with small payload should ALLOW."""
+        prompt = "Check status of 550e8400-e29b-41d4-a716-446655440000"
+
+        from trimmer_hook import detect_forensic_tripwire
+        is_forensic, _ = detect_forensic_tripwire(prompt)
+        assert is_forensic, "UUID should be detected as forensic"
+
+        result = run_hook_with_prompt(prompt, small_data)
+        assert not result["blocked"], "UUID + small payload should ALLOW"
+
+    def test_uuid_large_payload_blocks(self, large_data):
+        """UUID pattern with large payload should BLOCK."""
+        prompt = "Check status of 550e8400-e29b-41d4-a716-446655440000"
+
+        result = run_hook_with_prompt(prompt, large_data)
+        assert result["blocked"], "UUID + large payload should BLOCK"
+
+    @pytest.mark.parametrize("forensic_prompt", [
+        "Why did request id=abc123 fail?",
+        "What happened to user id: xyz789?",
+        "Check transaction 550e8400-e29b-41d4-a716-446655440000",
+        "Why did this request timeout?",
+        "What went wrong with the deployment?",
+    ])
+    def test_forensic_patterns_allow_with_small_payload(self, small_data, forensic_prompt):
+        """All forensic patterns should ALLOW with small payload."""
+        from trimmer_hook import detect_forensic_tripwire
+        is_forensic, _ = detect_forensic_tripwire(forensic_prompt)
+        assert is_forensic, f"Should be detected as forensic: {forensic_prompt}"
+
+        result = run_hook_with_prompt(forensic_prompt, small_data)
+        assert not result["blocked"], (
+            f"Forensic + small payload should ALLOW.\n"
+            f"Prompt: {forensic_prompt}"
+        )
 
 
 # =============================================================================
