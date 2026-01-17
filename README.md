@@ -1,8 +1,8 @@
 # context-guard
 
-**Context-Guard prevents LLMs from reasoning with unjustified certainty when input data is incomplete.**
+**Prevents LLMs from reasoning with unjustified certainty when input data is incomplete.**
 
-LLM Epistemic Safety Layer - context integrity enforcement with sampling-aware guardrails. Automatically detects when trimming would compromise analytical accuracy and blocks silent sampling.
+Detects when trimming would hide relevant data and blocks silent sampling for forensic queries.
 
 ## Recommended Usage
 
@@ -110,9 +110,9 @@ Context Guard supports three semantic modes that control trimming behavior:
 Add markers to your prompt to explicitly set the mode:
 
 ```
-#trimmer:mode=analysis    # Allow sampling (default)
-#trimmer:mode=summary     # Allow aggressive trimming
-#trimmer:mode=forensics   # Block if data exceeds limit
+#guard:mode=analysis    # Allow sampling (default)
+#guard:mode=summary     # Allow aggressive trimming
+#guard:mode=forensics   # Block if data exceeds limit
 ```
 
 ### Forensic Question Detection
@@ -142,8 +142,8 @@ Context Guard automatically detects forensic questions and warns/blocks:
 The hook runs automatically on every prompt:
 
 ```
-[trimmer] WARNING: Forensic query detected ("request id=abc123") with large payload (~5000 tokens)
-[trimmer] HINT: Use /guard to analyze, or add #trimmer:mode=analysis to allow sampling
+[context-guard] WARNING: Forensic query detected ("request id=abc123") with large payload (~5000 tokens)
+[context-guard] HINT: Use /guard to analyze, or add #guard:mode=analysis to allow sampling
 ```
 
 ### /guard Command
@@ -195,9 +195,9 @@ READY TO SEND PROMPT
 
 ### Escape Hatches
 
-- `#trimmer:off` - Disable hook for this prompt
-- `#trimmer:force` - Bypass all blocking
-- `#trimmer:mode=analysis` - Explicitly allow sampling for forensic-looking questions
+- `#guard:off` - Disable hook for this prompt
+- `#guard:force` - Bypass all blocking
+- `#guard:mode=analysis` - Explicitly allow sampling for forensic-looking questions
 
 ## Design Principles
 
@@ -213,7 +213,7 @@ READY TO SEND PROMPT
 
 Fast, character-based checks with NO API calls:
 
-1. Check escape hatches (#trimmer:off, #trimmer:force)
+1. Check escape hatches (#guard:off, #guard:force)
 2. chars < MIN_CHARS? → ALLOW
 3. chars > HARD_LIMIT? → BLOCK (context flooding)
 4. No JSON markers? → ALLOW
