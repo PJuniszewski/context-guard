@@ -70,6 +70,17 @@ claude /plugin install juni-tools:context-guard
 claude /plugin enable context-guard
 ```
 
+### Via skills.sh
+
+```bash
+npx skills add PJuniszewski/context-guard
+```
+
+Or install specific skill:
+```bash
+npx skills add PJuniszewski/context-guard --skill guard
+```
+
 ### Set environment variables
 
 ```bash
