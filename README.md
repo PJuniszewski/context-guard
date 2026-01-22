@@ -63,10 +63,10 @@ Full analysis pipeline with:
 ### Via Juni-Tools Marketplace
 
 ```bash
-# Add the marketplace (run /plugin, select "Add Marketplace", enter: PJuniszewski/juni-tools-marketplace)
+# Add the marketplace (run /plugin, select "Add Marketplace", enter: PJuniszewski/juni-skills-marketplace)
 
 # Install and enable
-claude /plugin install juni-tools:context-guard
+claude /plugin install juni-skills:context-guard
 claude /plugin enable context-guard
 ```
 
